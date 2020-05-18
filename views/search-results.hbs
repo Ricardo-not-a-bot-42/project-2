@@ -1,5 +1,22 @@
 <h1>Search Results:</h1>
 
 {{#each foodData}}
-<h4>{{ food.label }}</h4>
+{{#if food}}
+<img src="{{ food.image }}" alt="">
+<h4><a href="/food/{{ food.foodId }}">{{ food.label }}</a></h4>
+{{/if}}
 {{/each}}
+
+<form action="/search">
+<input type="hidden" name="session" value="{{ nextPage }}">
+<input type="hidden" name="direction" value="1">
+<input type="hidden" name="name" value="{{searchTerm}}">
+  <button>Next Page</button>
+</form>
+
+<form action="/search">
+<input type="hidden" name="session" value="{{ nextPage }}">
+<input type="hidden" name="direction" value="-1">
+<input type="hidden" name="name" value="{{searchTerm}}">
+  <button>Previous Page</button>
+</form>

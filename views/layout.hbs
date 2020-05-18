@@ -12,6 +12,8 @@
       <a href="/">Home</a>
       <form action="/search">
         <input type="text" name="name" id="">
+        <input type="hidden" name="direction" value="1">
+        <input type="hidden" name="session" value="-1">
         <button>Search</button>
       </form>
       {{#if user}}
