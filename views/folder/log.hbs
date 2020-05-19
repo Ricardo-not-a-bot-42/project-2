@@ -1,0 +1,41 @@
+<header>
+    <div>
+        <h1>{{dayLog.name}}</h1>
+    </div>    
+</header>
+<section>
+<!-- search -->
+    <form action="/{{user._id}}/folder/{{monthId}}/{{dayLog.name}}/add" method="GET">
+        <input type="text" name="name" placeholder="food" id="">
+        <input type="hidden" name="direction" value="1">
+        <input type="hidden" name="session" value="-1">
+        <button>Search</button>
+      </form>
+</section>
+<section>
+    {{#each dayLog.foods}}
+    <div>
+        <div> 
+            <p>{{name}}</p><span>{{amount}}</span>
+        </div>
+        <div> 
+            <div>
+                <p>{{nutrients.Kcal}}</p>
+                <p>Kcal</p>
+            </div>
+            <div>
+                <p>{{nutrients.carb}}</p>
+                <p>carb</p>
+            </div>
+            <div>
+                <p>{{nutrients.prot}}</p>
+                <p>prot</p>
+            </div>
+            <div>
+                <p>{{nutrients.fat}}</p>
+                <p>fat</p>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</section>

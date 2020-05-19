@@ -26,7 +26,7 @@ router.post('/sign-up', (req, res, next) => {
     })
     .then((user) => {
       req.session.user = user._id;
-      res.redirect('/profile/daily');
+      res.redirect('/profile');
     })
     .catch((error) => {
       next(error);
@@ -52,7 +52,7 @@ router.post('/sign-in', (req, res, next) => {
     .then((result) => {
       if (result) {
         req.session.user = user._id;
-        res.redirect('/profile/daily');
+        res.redirect('/profile');
       } else {
         return Promise.reject(new Error('Wrong password.'));
       }

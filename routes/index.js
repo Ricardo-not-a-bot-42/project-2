@@ -7,7 +7,7 @@ const routeGuard = require('./../middleware/route-guard');
 
 router.get('/', (req, res, next) => {
   if (res.locals.user) {
-    res.redirect('/profile/daily');
+    res.redirect('/profile');
   } else {
     res.render('index');
   }

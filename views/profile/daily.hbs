@@ -1,6 +1,6 @@
-<div class="log-selection">
-  <a href="">Select Day</a>
-  <a href="/profile/monthly">November - 12</a>
+
+<div class="log-view">
+  <h1>Viewing daily log for: {{selectedDay.name}}/{{selectedMonth.name}}/{{selectedMonth.year}}</h1>
 </div>
 
 <div>
@@ -10,19 +10,19 @@
 <div class="statistics">
   <div class="stat">
     <input type="checkbox" name="" id="">
-    <h4>Calories: 1000/{{recommendedCalories}}</h4>
+    <h4>Calories: {{selectedDay.totalKcal}}/{{recommendedCalories}}</h4>
   </div>
   <div class="stat">
     <input type="checkbox" name="" id="">
-    <h4>Carbs: 1000</h4>
+    <h4>Carbs: {{selectedDay.totalCarbs}}</h4>
   </div>
   <div class="stat">
     <input type="checkbox" name="" id="">
-    <h4>Protein: 1000</h4>
+    <h4>Protein: {{selectedDay.totalProtein}}</h4>
   </div>
   <div class="stat">
     <input type="checkbox" name="" id="">
-    <h4>Fat: 1000</h4>
+    <h4>Fat: {{selectedDay.totalFat}}</h4>
   </div>
 </div>
 
@@ -34,25 +34,12 @@
   <h3>Eaten Today:</h3>
   <hr>
   <ul>
-    <li><div class="daily-food-item">
-      <h5>Banana</h5>
-      <h5>Calories: 100</h5>
+    {{#each selectedDay.foods}}
+        <li><div class="daily-food-item">
+      <h5>{{name}}</h5>
+      <h5>Calories: {{nutrients.Kcal}}</h5>
     </div></li>
-    <li><div class="daily-food-item">
-      <h5>Banana</h5>
-      <h5>Calories: 100</h5>
-    </div></li>
-    <li><div class="daily-food-item">
-      <h5>Banana</h5>
-      <h5>Calories: 100</h5>
-    </div></li>
-    <li><div class="daily-food-item">
-      <h5>Banana</h5>
-      <h5>Calories: 100</h5>
-    </div></li>
+    {{/each}}
   </ul>
 </div>
 
-<div class="edit-profile-button">
-  <a href="/profile/edit">Edit Profile</a>
-</div>

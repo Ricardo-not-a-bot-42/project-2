@@ -1,0 +1,39 @@
+
+<div class="profile-info">
+  <h2>{{ user.name }}</h2>
+  <h3>Email: {{ user.email }}</h3>
+  <h3>Age: {{ user.age }}</h3>
+  <h3>Gender: {{ user.gender }}</h3>
+  
+</div>
+
+<div class="edit-profile-button">
+  <a href="/profile/edit">Edit Profile</a>
+</div>
+
+<div class="log-management">
+  <a href="/{{ user._id}}/folder">Manage Folders</a>
+
+  <form action="/profile/daily">
+    <label for="year-input">Year</label>
+    <input type="number" name="year" id="year-input" min="20" required>
+    <label for="month-input">Month</label>
+    <select name="month" id="month-input">
+      <option value="january">January</option>
+      <option value="february">February</option>
+      <option value="march">March</option>
+      <option value="april">April</option>
+      <option value="may">May</option>
+      <option value="june">June</option>
+      <option value="july">July</option>
+      <option value="august">August</option>
+      <option value="september">September</option>
+      <option value="october">October</option>
+      <option value="november">November</option>
+      <option value="december">December</option>
+    </select>
+    <label for="day-input">Day</label>
+    <input type="number" name="day" id="day-input" min="1" max="31" required>
+    <button>View Daily Report</button>
+  </form>
+</div>

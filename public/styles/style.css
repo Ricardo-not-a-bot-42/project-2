@@ -144,18 +144,9 @@ footer {
     margin: 1em;
     box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75); }
 
-.log-selection {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  margin: 2em auto; }
-  .log-selection a {
-    border: 1px solid black;
-    border-radius: 15px;
-    font-size: 1.2em;
-    text-align: center;
-    padding: 0.3em 1em;
-    margin: 0 0.5em; }
+.log-view {
+  margin: 2em auto;
+  border-bottom: 1px solid black; }
 
 .chart-canvas {
   border: 1px solid blue;
