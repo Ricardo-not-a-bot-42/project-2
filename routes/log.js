@@ -119,12 +119,12 @@ router.post("/:userId/folder/:monthId/:logname/add*", (req, res, next) => {
 
       doc.totalKcal += (Kcal / 100) * amount;
       doc.totalProtein += (prot / 100) * amount;
-      doc.totalCarb += (carb / 100) * amount;
+      doc.totalCarbs += (carb / 100) * amount;
       doc.totalFat += (fat / 100) * amount;
 
       doc.day[dayIndex].totalKcal += (Kcal / 100) * amount;
       doc.day[dayIndex].totalProtein += (prot / 100) * amount;
-      doc.day[dayIndex].totalCarb += (carb / 100) * amount;
+      doc.day[dayIndex].totalCarbs += (carb / 100) * amount;
       doc.day[dayIndex].totalFat += (fat / 100) * amount;
 
       doc.day[dayIndex].foods.push(foodLog);
