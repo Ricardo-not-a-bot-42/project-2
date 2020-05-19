@@ -1,10 +1,10 @@
 <header>
-    <div>
+    <div class="title">
         <h1>{{dayLog.name}}</h1>
     </div>    
 </header>
-<section>
-<!-- search -->
+<section class="container">
+
     <form action="/{{user._id}}/folder/{{monthId}}/{{dayLog.name}}/add" method="GET">
         <input type="text" name="name" placeholder="food" id="">
         <input type="hidden" name="direction" value="1">
@@ -12,7 +12,7 @@
         <button>Search</button>
       </form>
 </section>
-<section>
+<section class="container">
     {{#each dayLog.foods}}
     <div>
         <div> 
