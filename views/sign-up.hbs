@@ -1,10 +1,29 @@
-<form action="/authentication/sign-up" method="POST">
-  <label for="input-name">Name</label>
-  <input type="text" id="input-name" name="name" placeholder="Your Name" />
+<h1>Create an account</h1>
+
+<form action="/authentication/sign-up" method="POST" class="sign-up">
+<div class="form-container">
   <label for="input-email">Email</label>
-  <input type="email" id="input-email" name="email" placeholder="Your Email" />
+  <input type="email" id="input-email" name="email" placeholder="Your Email" required/>
+</div>
+<div class="form-container">
+  <label for="input-name">Name</label>
+  <input type="text" id="input-name" name="name" placeholder="Your Name" required/>
+</div>
+<div class="form-container">
+  <label for="input-age">Age</label>
+  <input type="number" id="input-name" name="age" min="1" placeholder="Your Name" required/>
+</div>
+<div class="form-container">
+  <label for="input-gender">Gender</label>
+  <select name="gender" id="input-gender" required>
+    <option value="">Select an option</option>
+    <option value="male">Male</option>
+    <option value="female">Female</option>
+  </select>
+</div>
+<div class="form-container">
   <label for="input-password">Password</label>
-  <input type="password" name="password" id="input-password" placeholder="A Strong Password" />
-  <button>Sign Up</button>
+  <input type="password" name="password" id="input-password" placeholder="A Strong Password" required/>
+</div>
+  <button>Create Account</button>
 </form>
-<a href="/authentication/github">Sign Up with GitHub</a>

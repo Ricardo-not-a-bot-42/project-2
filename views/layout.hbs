@@ -9,24 +9,35 @@
   </head>
   <body>
     <nav>
-      <a href="/">Home</a>
-      <form action="/search">
-        <input type="text" name="name" id="">
-        <input type="hidden" name="direction" value="1">
-        <input type="hidden" name="session" value="-1">
-        <button>Search</button>
-      </form>
+      <a href="/" class="nav-title">Food Logger</a>
+
       {{#if user}}
         <!-- <a href="/">{{user.name}}'s Profile</a> -->
-        <form action="/authentication/sign-out" method="POST">
-          <button>Sign Out</button>
-        </form>
+        <div>
+          <a href="/profile/daily"class="nav-logout">Profile</a>
+          <form action="/authentication/sign-out" method="POST">
+            <button class="nav-logout">Logout</button>
+          </form>
+
+        </div>
+
         {{else}}
-        <a href="/authentication/sign-in">Sign In</a>
-        <a href="/authentication/sign-up">Sign Up</a>
+        <a href="/authentication/sign-in" class="nav-login">Login</a>
       {{/if}}
     </nav>
     {{{body}}}
+    <footer>
+      <div class="creator-info">
+        <h6>Developed by: </h6>
+        <hr>
+        <h6>Ricardo Loureiro</h6>
+        <h6>Cesar Mello</h6>
+        <h6>2020</h6>
+      </div>
+      <div class="github">
+        <h6><a href="https://github.com/Ricardo-not-a-bot-42/project-2">Github Repo</a></h6>
+      </div>
+    </footer>
     <script src="/scripts/script.js"></script>
   </body>
 </html>

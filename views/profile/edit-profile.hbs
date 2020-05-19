@@ -1,0 +1,25 @@
+<h1>Update your account</h1>
+
+<form action="" method="POST" class="sign-up">
+<div class="form-container">
+  <label for="input-email">Email</label>
+  <input type="email" id="input-email" name="email" placeholder="Your Email" value="{{ user.email }}" required/>
+</div>
+<div class="form-container">
+  <label for="input-name">Name</label>
+  <input type="text" id="input-name" name="name" placeholder="Your Name" value="{{ user.name }}" required/>
+</div>
+<div class="form-container">
+  <label for="input-age">Age</label>
+  <input type="number" id="input-name" name="age" min="1" placeholder="Your Name" value="{{ user.age }}" required/>
+</div>
+<div class="form-container">
+  <label for="input-gender">Gender</label>
+  <select name="gender" id="input-gender" required>
+    <option value="">Select an option</option>
+    <option value="male">Male</option>
+    <option value="female">Female</option>
+  </select>
+</div>
+  <button>Update Account</button>
+</form>

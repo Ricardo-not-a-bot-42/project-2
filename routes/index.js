@@ -6,7 +6,11 @@ const axios = require('axios');
 const routeGuard = require('./../middleware/route-guard');
 
 router.get('/', (req, res, next) => {
-  res.render('index');
+  if (res.locals.user) {
+    res.redirect('/profile/daily');
+  } else {
+    res.render('index');
+  }
 });
 
 router.get('/search', (req, res, next) => {
