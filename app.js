@@ -14,6 +14,7 @@ const basicAuthenticationDeserializer = require('./middleware/basic-authenticati
 const bindUserToViewLocals = require('./middleware/bind-user-to-view-locals.js');
 const indexRouter = require('./routes/index');
 const authenticationRouter = require('./routes/authentication');
+const logRouter = require("./routes/log");
 
 const app = express();
 
@@ -41,14 +42,14 @@ app.use(
     resave: true,
     saveUninitialized: false,
     cookie: {
-      maxAge: 60 * 60 * 24 * 15,
+      maxAge: 60 * 60 * 24 * 15 * 1000,
       sameSite: 'lax',
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
     },
     store: new (connectMongo(expressSession))({
       mongooseConnection: mongoose.connection,
-      ttl: 60 * 60 * 24,
+      ttl: 60 * 60 * 24 ,
     }),
   })
 );
@@ -57,6 +58,7 @@ app.use(bindUserToViewLocals);
 
 app.use('/', indexRouter);
 app.use('/authentication', authenticationRouter);
+app.use('/', logRouter);
 
 // Catch missing routes and forward to error handler
 app.use((req, res, next) => {
