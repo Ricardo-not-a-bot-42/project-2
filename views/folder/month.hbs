@@ -1,9 +1,9 @@
 <header>
-    <div>
-        <h1>{{month.name}}/{{month.year}}</h1>
+    <div class="title">
+        <h1>{{month.name}}/{{month.year}}<span id="delete" class="fas fa-trash-alt"></span></h1>
     </div>    
 </header>
-<section>
+<section  class="container">
     {{#each month.day}}
     <a href="/{{ ../month.userId}}/folder/{{../month._id}}/{{name}}">
     <div class="card">
@@ -12,18 +12,30 @@
     </a>
     {{/each}}
 </section>
-<section>
-    <div class="add-btn-circle">+</div>
+<section  class="form-container">
+    
     <div class="add-box">
-        <form action="/{{user._id}}/folder/{{month._id}}/createlog" method="POST">
-            <label for="day-input">Day</label>
-            <select name="day" id="day">
-                <option value="01">01</option>
-                <option value="02">02</option>
-            </select>
+        <form class="add-form" action="/{{user._id}}/folder/{{month._id}}/createlog" method="POST">
+            <div>
+                <label for="day-input">Day</label>
+                <select name="day" id="day">
+                    <option value="01">01</option>
+                    <option value="02">02</option>
+                </select>
+
+            </div>
+            
             <button class="square-btn">ADD</button>
-            <button class="square-btn" onclick="cancel()">CANCEL</button>
+            
         </form>
     </div>
 
 </section>
+<script src="https://kit.fontawesome.com/49cb587e31.js" crossorigin="anonymous"></script>
+
+<script>
+    $delete = document.getElementById("delete");
+    $delete.addEventListener("click", (event)=>{
+        console.log("delete");
+    });
+</script>
