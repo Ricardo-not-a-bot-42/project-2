@@ -1,39 +1,85 @@
 const mongoose = require("mongoose");
 
 const foodSchema = new mongoose.Schema({
-  name: "",
+  name: {
+    type: String,
+    required: true,
+  },
+  amount: {
+    type: Number,
+  },
   nutrients: {
-    Kcal: 0,
-    carb: 0,
-    prot: 0,
-    fat: 0,
+    Kcal: {
+      type: Number,
+    },
+    carb: {
+      type: Number,
+    },
+    prot: {
+      type: Number,
+    },
+    fat: {
+      type: Number,
+    },
   },
 });
 
 const daySchema = new mongoose.Schema({
-  totalKcal: 0,
-  totalCarbs: 0,
-  totalProtein: 0,
-  totalFat: 0,
-  dia: "",
+  totalKcal: {
+    type: Number,
+    default: 0,
+  },
+  totalCarbs: {
+    type: Number,
+    default: 0,
+  },
+  totalProtein: {
+    type: Number,
+    default: 0,
+  },
+  totalFat: {
+    type: Number,
+    default: 0,
+  },
+  name: {
+    type: String,
+    required: true,
+  },
   foods: [foodSchema],
 });
 
 const monthSchema = new mongoose.Schema({
-  userId: "03048100373750",
-  logs: [
-    {
-      totalKcal: 3000,
-      totalCarbs: 400,
-      totalProtein: 200,
-      totalFat: 100,
-      month: "April",
-      year: "2000",
-      days: [daySchema],
-    },
-  ],
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  },
+  totalKcal: {
+    type: Number,
+    default: 0,
+  },
+  totalCarbs: {
+    type: Number,
+    default: 0,
+  },
+  totalProtein: {
+    type: Number,
+    default: 0,
+  },
+  totalFat: {
+    type: Number,
+    default: 0,
+  },
+  name: {
+    type: String,
+    required: true,
+  },
+  year: {
+    type: String,
+    required: true,
+  },
+  day: [daySchema],
 });
 
-const Log = mongoose.model("log", monthSchema);
+const Log = mongoose.model("Log", monthSchema);
 
 module.exports = Log;

@@ -1,0 +1,38 @@
+<h1>Search Results:</h1>
+
+{{#each foodData}}
+{{#if food}}
+<div>
+    <img src="{{ food.image }}" alt="">
+    <h4>{{ food.label }}</h4>
+    <form action="" method="POST">
+        <label for="food">{{ food.label }}</label>
+        <input type="text" name="amount">
+        <input type="hidden" name="name" value="{{food.label}}">
+        <input type="hidden" name="Kcal" value={{food.nutrients.ENERC_KCAL}}>
+        <input type="hidden" name="carb" value={{food.nutrients.CHOCDF}}>
+        <input type="hidden" name="prot" value={{food.nutrients.PROCNT}}>
+        <input type="hidden" name="fat" value={{food.nutrients.FAT}}>
+        
+
+        <button>ADD</button>
+    </form>
+</div>
+
+
+{{/if}}
+{{/each}}
+
+<form action="/search">
+<input type="hidden" name="session" value="{{ nextPage }}">
+<input type="hidden" name="direction" value="1">
+<input type="hidden" name="name" value="{{searchTerm}}">
+  <button>Next Page</button>
+</form>
+
+<form action="/search">
+<input type="hidden" name="session" value="{{ nextPage }}">
+<input type="hidden" name="direction" value="-1">
+<input type="hidden" name="name" value="{{searchTerm}}">
+  <button>Previous Page</button>
+</form>
