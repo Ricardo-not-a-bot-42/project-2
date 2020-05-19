@@ -27,7 +27,9 @@ router.get('/daily', routeGuard, (req, res, next) => {
           selectedDay = day;
         }
       }
-
+      if (!selectedDay) {
+        throw new Error('Log not found');
+      }
       const userAge = res.locals.user.age;
       const userGender = res.locals.user.gender;
       let recommendedCalories;

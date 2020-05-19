@@ -4,30 +4,30 @@
 </div>
 
 <div>
-  <canvas class="chart-canvas"></canvas>
+  <canvas class="chart-canvas" id="chart"></canvas>
 </div>
 
 <div class="statistics">
-  <div class="stat">
-    <input type="checkbox" name="" id="">
+  <h1>Daily totals:</h1>
+  <div>
+      <div class="stat">
     <h4>Calories: {{selectedDay.totalKcal}}/{{recommendedCalories}}</h4>
   </div>
   <div class="stat">
-    <input type="checkbox" name="" id="">
     <h4>Carbs: {{selectedDay.totalCarbs}}</h4>
   </div>
   <div class="stat">
-    <input type="checkbox" name="" id="">
     <h4>Protein: {{selectedDay.totalProtein}}</h4>
   </div>
   <div class="stat">
-    <input type="checkbox" name="" id="">
     <h4>Fat: {{selectedDay.totalFat}}</h4>
   </div>
+  </div>
+
 </div>
 
 <div class="daily-add-food">
-  <a href="">Add Food</a>
+  <a href="/{{selectedMonth.userId}}/folder/{{selectedMonth._id}}/{{selectedDay.name}}">Add Food</a>
 </div>
 
 <div class="daily-food-list">
@@ -43,3 +43,79 @@
   </ul>
 </div>
 
+{{!-- <script src="/scripts/chartDaily.js"></script> --}}
+
+<script>
+  window.onload = function() {
+  const $canvas = document.getElementById('chart');
+  const $context = $canvas.getContext('2d');
+
+  const foodItems = {{{ json selectedDay.foods}}};
+  let foodNames = [];
+  let foodKcal = [];
+  let foodCarb = [];
+  let foodProtein = [];
+  let foodFat = [];
+  console.log(foodItems);
+
+  for(let food of foodItems) {
+    foodNames.push(food.name)
+    foodKcal.push(food.nutrients.Kcal);
+    foodCarb.push(food.nutrients.carb);
+    foodProtein.push(food.nutrients.prot);
+    foodFat.push(food.nutrients.fat);
+  }
+  foodNames.push('Total');
+  foodKcal.push({{{ json selectedDay.totalKcal}}});
+  foodCarb.push({{{ json selectedDay.totalCarbs}}});
+  foodProtein.push({{{ json selectedDay.totalProtein}}});
+  foodFat.push({{{ json selectedDay.totalFat}}});
+
+  const data = {
+    labels: foodNames,
+    datasets: [
+      {
+        label: 'Kcal',
+        backgroundColor: 'blue',
+        borderColor: 'blue',
+        data: foodKcal,
+      },
+      {
+        label: 'Carbs',
+        backgroundColor: 'red',
+        borderColor: 'white',
+        data: foodCarb,
+      },
+      {
+        label: 'Protein',
+        backgroundColor: 'green',
+        borderColor: 'white',
+        data: foodProtein,
+      },
+      {
+        label: 'Fat',
+        backgroundColor: 'yellow',
+        borderColor: 'white',
+        data: foodFat,
+      },
+    ],
+  };
+
+  const chart = new Chart($context, {
+    //data
+    type: 'bar',
+    data: data,
+    options: {
+      //options
+      responsive: true,
+      maintainAspectRatio: false,
+      title: {
+        display: true,
+        text: 'Daily consumption info:',
+      },
+    },
+  });
+  };
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
