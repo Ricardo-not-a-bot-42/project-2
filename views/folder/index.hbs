@@ -1,34 +1,41 @@
 <header>
-    <div>
+    <div class="title">
         <h1>Months</h1>
         
     </div>    
 </header>
-<section>
-    {{#each months}}
-    <a href="/{{userId}}/folder/{{_id}}">
-    <div class="card">
-        <p>{{name}}/{{year}}</p>
+<section class="container">
+    <div class="card-list">
+        {{#each months}}
+        <a href="/{{userId}}/folder/{{_id}}">
+        <div class="card">
+            <p>{{name}}/{{year}}</p>
+        </div>
+        </a>
+        {{/each}}
     </div>
-    </a>
-    {{/each}}
 </section>
-<section>
-    <div class="add-btn-circle">+</div>
+<section class="form-container">
+    
     <div class="add-box">
-        <form action="/{{user._id}}/folder/create" method="POST">
-            <label for="month-input">Month</label>
-            <select name="month" id="month">
-                <option value="january">january</option>
-                <option value="february">february</option>
-            </select>
-            <label for="year-input">Year</label>
-            <select name="year" id="year">
-                <option value="20">2020</option>
-                <option value="21">2021</option>
-            </select>
+        <form class="add-form" action="/{{user._id}}/folder/create" method="POST">
+            <div class="month-inputs">
+                <div>
+                    <label for="month-input">Month</label>
+                    <select name="month" id="month">
+                        <option value="january">january</option>
+                        <option value="february">february</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="year-input">Year</label>
+                    <select name="year" id="year">
+                        <option value="20">2020</option>
+                        <option value="21">2021</option>
+                    </select>
+                </div>
+            </div>
             <button class="square-btn">ADD</button>
-            <button class="square-btn" onclick="cancel()">CANCEL</button>
         </form>
     </div>
 
