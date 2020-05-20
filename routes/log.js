@@ -40,6 +40,17 @@ router.get('/:userId/folder/:monthId', (req, res, next) => {
     });
 });
 
+router.post("/:userId/folder/:monthId/delete", (req, res, next) => {
+  const { userId, monthId } = req.params;
+  Log.findOneAndRemove({ userId, _id: monthId })
+    .then((month) => {
+      res.redirect("/" + req.user._id + "/folder/");
+    })
+    .catch((err) => {
+      next(err);
+    });
+});
+
 router.post('/:userId/folder/:monthId/createlog', (req, res, next) => {
   const { userId, monthId } = req.params;
   const day = req.body.day;
@@ -51,6 +62,23 @@ router.post('/:userId/folder/:monthId/createlog', (req, res, next) => {
       month.save();
       console.log(month);
       res.redirect('/' + req.user._id + '/folder/' + monthId);
+    })
+    .catch((err) => {
+      next(err);
+    });
+});
+
+router.post("/:userId/folder/:monthId/:logname/delete", (req, res, next) => {
+  const { userId, monthId, logname } = req.params;
+  Log.findOne({ userId, _id: monthId })
+    .then((doc) => {
+      const dayIndex = doc.day.findIndex((d) => {
+        return d.name === logname;
+      });
+
+      doc.day.splice(dayIndex, 1);
+      doc.save();
+      res.redirect("/" + req.user._id + "/folder/" + monthId);
     })
     .catch((err) => {
       next(err);
@@ -137,5 +165,29 @@ router.post('/:userId/folder/:monthId/:logname/add*', (req, res, next) => {
       next(err);
     });
 });
+
+router.post("/:userId/folder/:monthId/:logname/:foodId/delete", (req, res, next) => {
+  const { userId, monthId, logname, foodId } = req.params;
+  Log.findOne({ userId, _id: monthId })
+    .then((doc) => {
+      const dayIndex = doc.day.findIndex((d) => {
+        return d.name === logname;
+      });
+
+      const foodIndex = doc.day[dayIndex].foods.findIndex((food) => {
+        return food._id == foodId;
+      });
+
+      console.log(foodIndex, dayIndex);
+
+      doc.day[dayIndex].foods.splice(foodIndex, 1);
+      doc.save();
+      res.redirect("/" + req.user._id + "/folder/" + monthId + "/" + logname);
+    })
+    .catch((err) => {
+      next(err);
+    });
+});
+
 
 module.exports = router;
