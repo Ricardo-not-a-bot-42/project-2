@@ -1,17 +1,21 @@
 <header>
     <div class="title">
-        <h1>Months</h1>
+        <h1>Months<span id="delete" class="fas fa-trash-alt trash"></span></h1>
         
     </div>    
 </header>
 <section class="container">
     <div class="card-list">
         {{#each months}}
-        <a href="/{{userId}}/folder/{{_id}}">
-        <div class="card">
-            <p>{{name}}/{{year}}</p>
-        </div>
-        </a>
+            <a href="/{{userId}}/folder/{{_id}}">
+                <div class="card">
+                    <form class="delete" style="display:none" action="/{{userId}}/folder/{{_id}}/delete" method="POST">
+                        <button>X</button>
+                        
+                    </form>
+                    <p>{{name}}/{{year}}</p>
+                </div>
+            </a>
         {{/each}}
     </div>
 </section>
@@ -25,6 +29,16 @@
                     <select name="month" id="month">
                         <option value="january">january</option>
                         <option value="february">february</option>
+                        <option value="march">march</option>
+                        <option value="april">april</option>
+                        <option value="may">may</option>
+                        <option value="june">june</option>
+                        <option value="july">july</option>
+                        <option value="august">august</option>
+                        <option value="october">october</option>
+                        <option value="november">november</option>
+                        <option value="december">december</option>
+                        
                     </select>
                 </div>
                 <div>
@@ -40,3 +54,25 @@
     </div>
 
 </section>
+
+<script src="https://kit.fontawesome.com/49cb587e31.js" crossorigin="anonymous"></script>
+<script>
+    $delete = document.getElementById("delete");
+    $links = document.getElementsByClassName("delete");
+    clicked = false;
+    $delete.addEventListener("click", (event)=>{
+        clicked = !clicked;
+        if(clicked){
+            for(let link of $links){
+                link.style = "";
+                
+            }
+        }else{
+            for(let link of $links){
+                link.style = "display:none";
+            }
+        }
+        
+        console.log("delete");
+    });
+</script>
