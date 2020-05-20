@@ -355,10 +355,11 @@ footer {
 }
 
 .card-list {
+  margin: 30px auto;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: center;
 }
 
 .card {
@@ -366,15 +367,10 @@ footer {
   width: 130px;
   height: 130px;
   margin: 10px;
-  display: table-cell;
-  vertical-align: middle;
+  padding-top: 30%;
   p {
     text-align: center;
   }
-}
-
-.container {
-  padding: 50px;
 }
 
 .add-form {
@@ -393,6 +389,10 @@ footer {
 
   button {
     margin: 0 10px;
+    border: 2px solid black;
+    background-color: burlywood;
+    width: 75px;
+    height: 75px;
   }
 }
 
@@ -404,4 +404,97 @@ footer {
 .month-inputs {
   display: flex;
   flex-direction: column;
+}
+
+.delete {
+  width: 100%;
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  button {
+    width: 2rem;
+    height: 2rem;
+    font-size: 10px;
+    float: right;
+    border-radius: 45px;
+    border: 1px solid red;
+    background-color: red;
+    color: white;
+  }
+}
+
+.trash {
+  //position: relative;
+  float: right;
+  margin: 20px 20px 0 0;
+  //left: 18%;
+}
+
+.search {
+  width: 100%;
+  background-color: rgb(207, 248, 235);
+  padding: 15px 10px;
+}
+
+.search-form {
+  display: flex;
+  flex-direction: row;
+  input {
+    border: thin solid mediumturquoise;
+    border-radius: 45px;
+    margin: 0 5px;
+    width: 100%;
+  }
+
+  button {
+    background-color: rgb(207, 248, 235);
+    border: 1px solid mediumturquoise;
+
+    color: mediumturquoise;
+    border-radius: 45px;
+    margin: 0 5px;
+  }
+}
+.food-line {
+  display: flex;
+  direction: row;
+  justify-content: space-between;
+}
+
+.food-item {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+
+  hr {
+    margin: 10px 0 0;
+  }
+
+  p {
+    margin: 0;
+    line-height: 1rem;
+  }
+}
+
+.food-item-head {
+  display: flex;
+  justify-content: space-between;
+}
+
+.food-item-body {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.deleteFood {
+  button {
+    width: 2rem;
+    height: 2rem;
+    font-size: 10px;
+    border-radius: 45px;
+    border: 1px solid red;
+    background-color: red;
+    color: white;
+  }
 }
