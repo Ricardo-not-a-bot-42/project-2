@@ -1,16 +1,25 @@
 <header>
     <div class="title">
-        <h1>{{month.name}}/{{month.year}}<span id="delete" class="fas fa-trash-alt"></span></h1>
+        <h1>{{month.name}}/{{month.year}}<span id="delete" class="fas fa-trash-alt trash"></span></h1>
     </div>    
 </header>
 <section  class="container">
+     <div class="card-list">
     {{#each month.day}}
-    <a href="/{{ ../month.userId}}/folder/{{../month._id}}/{{name}}">
-    <div class="card">
-        <p>{{name}}</p>
-    </div>
-    </a>
+       
+            <a href="/{{ ../month.userId}}/folder/{{../month._id}}/{{name}}">
+                <div class="card">
+                    <form class="delete" style="display:none" action="/{{ ../month.userId}}/folder/{{../month._id}}/{{name}}/delete" method="POST">
+                        <button>X</button>
+                        
+                    </form>
+                    <p>{{name}}</p>
+                </div>
+            </a>
+        
+
     {{/each}}
+    </div>
 </section>
 <section  class="form-container">
     
@@ -21,6 +30,11 @@
                 <select name="day" id="day">
                     <option value="01">01</option>
                     <option value="02">02</option>
+                    <option value="03">03</option>
+                    <option value="04">04</option>
+                    <option value="05">05</option>
+                    <option value="06">06</option>
+                    <option value="07">07</option>
                 </select>
 
             </div>
@@ -35,7 +49,22 @@
 
 <script>
     $delete = document.getElementById("delete");
+    $links = document.getElementsByClassName("delete");
+    
+    clicked = false;
     $delete.addEventListener("click", (event)=>{
+        clicked = !clicked;
+        if(clicked){
+            for(let link of $links){
+                link.style = "";
+                
+            }
+        }else{
+            for(let link of $links){
+                link.style = "display:none";
+            }
+        }
+        
         console.log("delete");
     });
 </script>
