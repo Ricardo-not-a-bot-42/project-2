@@ -9,11 +9,37 @@
        
             <a href="/{{ ../month.userId}}/folder/{{../month._id}}/{{name}}">
                 <div class="card">
+
                     <form class="delete" style="display:none" action="/{{ ../month.userId}}/folder/{{../month._id}}/{{name}}/delete" method="POST">
                         <button>X</button>
                         
                     </form>
-                    <p>{{name}}</p>
+                    <div class="day-card">
+                        <div class="day-title">
+                            <h3>{{name}}</h3>
+                        </div>
+                        <div class="day-nutrients">
+                            <div>
+                                <h4>1000</h4>
+                                <p>{{totalKcal}}</p>
+
+                            </div>
+                            <div>
+                                 <h4>100</h4>
+                                <p>{{totalCarbs}}</p>   
+                            </div>
+                            <div>
+                                <h4>100</h4>
+                                <p>{{totalProtein}}</p>
+                            </div>
+                            <div>
+                                <h4>20</h4>
+                                <p>{{totalFat}}</p>
+                            </div>
+                        </div>
+
+                    </div>
+                    
                 </div>
             </a>
         
