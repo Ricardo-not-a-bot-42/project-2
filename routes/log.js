@@ -141,21 +141,21 @@ router.post('/:userId/folder/:monthId/:logname/add*', (req, res, next) => {
         amount,
         category,
         nutrients: {
-          Kcal: (Kcal / 100) * amount,
-          prot: (prot / 100) * amount,
-          carb: (carb / 100) * amount,
-          fat: (fat / 100) * amount,
+          Kcal: Math.round((Kcal / 100) * amount),
+          prot: Math.round((prot / 100) * amount),
+          carb: Math.round((carb / 100) * amount),
+          fat: Math.round((fat / 100) * amount),
         },
       };
-      doc.totalKcal += (Kcal / 100) * amount;
-      doc.totalProtein += (prot / 100) * amount;
-      doc.totalCarbs += (carb / 100) * amount;
-      doc.totalFat += (fat / 100) * amount;
+      doc.totalKcal += Math.round((Kcal / 100) * amount);
+      doc.totalProtein += Math.round((prot / 100) * amount);
+      doc.totalCarbs += Math.round((carb / 100) * amount);
+      doc.totalFat += Math.round((fat / 100) * amount);
 
-      doc.day[dayIndex].totalKcal += (Kcal / 100) * amount;
-      doc.day[dayIndex].totalProtein += (prot / 100) * amount;
-      doc.day[dayIndex].totalCarbs += (carb / 100) * amount;
-      doc.day[dayIndex].totalFat += (fat / 100) * amount;
+      doc.day[dayIndex].totalKcal += Math.round((Kcal / 100) * amount);
+      doc.day[dayIndex].totalProtein += Math.round((prot / 100) * amount);
+      doc.day[dayIndex].totalCarbs += Math.round((carb / 100) * amount);
+      doc.day[dayIndex].totalFat += Math.round((fat / 100) * amount);
 
       doc.day[dayIndex].foods.push(foodLog);
       doc.save();
