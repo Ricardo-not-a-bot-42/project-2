@@ -14,12 +14,13 @@ router.get('/', routeGuard, (req, res, next) => {
 router.get('/daily', routeGuard, (req, res, next) => {
   let selectedDay;
   let selectedMonth;
+  const userId = res.locals.user._id;
   const dateDetails = {
     year: req.query.year,
     month: req.query.month,
     day: req.query.day,
   };
-  Log.findOne({ name: dateDetails.month, year: dateDetails.year })
+  Log.findOne({ name: dateDetails.month, year: dateDetails.year, userId })
     .then((result) => {
       selectedMonth = result;
       for (let day of result.day) {
@@ -69,15 +70,28 @@ router.get('/daily', routeGuard, (req, res, next) => {
 
 router.get('/monthly', routeGuard, (req, res, next) => {
   let selectedMonth;
+  const userId = res.locals.user._id;
   const dateDetails = {
     year: req.query.year,
     month: req.query.month,
   };
-  Log.findOne({ name: dateDetails.month, year: dateDetails.year })
+  Log.findOne({ name: dateDetails.month, year: dateDetails.year, userId })
     .then((result) => {
       selectedMonth = result;
+      const categories = {};
+      for (let day of selectedMonth.day) {
+        for (let food of day.foods) {
+          if (!categories[food.category]) {
+            categories[food.category] = 1;
+          } else {
+            categories[food.category] += 1;
+          }
+        }
+      }
+      console.log(categories);
       res.render('profile/monthly', {
         selectedMonth,
+        categories,
       });
     })
     .catch((error) => {
@@ -100,6 +114,21 @@ router.post('/edit', routeGuard, (req, res, next) => {
   User.findByIdAndUpdate(userId, updatedDetails).then(() => {
     res.redirect('/profile');
   });
+});
+
+router.post('/delete', routeGuard, (req, res, next) => {
+  const userId = res.locals.user._id;
+  console.log('asdas');
+  Log.deleteMany({ userId })
+    .then((error, result) => {
+      return User.findByIdAndDelete(userId);
+    })
+    .then(() => {
+      res.redirect('/');
+    })
+    .catch((error) => {
+      next(error);
+    });
 });
 
 module.exports = router;

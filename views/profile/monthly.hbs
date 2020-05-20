@@ -1,5 +1,5 @@
 <div class="log-view">
-  <h1>Viewing daily log for: {{selectedMonth.name}}/{{selectedMonth.year}}</h1>
+  <h1>Viewing monthly log for: {{selectedMonth.name}}/{{selectedMonth.year}}</h1>
 </div>
 
 <div>
@@ -26,7 +26,7 @@
 
 <div class="month-information">
   <div>
-    <canvas class="month-pie-chart"></canvas>
+    <canvas class="month-pie-chart" id="pie-chart"></canvas>
   </div>
   <div class="category-info">
     <div class="category-header">
@@ -36,14 +36,12 @@
     <hr>
     <div class="category-contents">
       <ul>
+        {{#each categories}}
         <li>
-          <h5 class="name">Fruit</h5>
-          <h5 class="quantity">12</h5>
+          <h5 class="name">{{@key}}</h5>
+          <h5 class="quantity">{{this}}</h5>
         </li>
-        <li>
-          <h5 class="name">Fruit</h5>
-          <h5 class="quantity">12</h5>
-        </li>
+        {{/each}}
       </ul>
     </div>
   </div>
@@ -54,8 +52,12 @@
   const $canvas = document.getElementById('chart');
   const $context = $canvas.getContext('2d');
 
+  const $canvasPie = document.getElementById('pie-chart');
+  const $contextPie = $canvasPie.getContext('2d');
+
   const month = {{{ json selectedMonth}}};
   const days = {{{ json selectedMonth.day}}};
+  const categories = {{{ json categories}}}
 
   let weekOneNutrients = {Kcal: 0, Carbs: 0, Protein: 0, Fat: 0};
   let weekTwoNutrients = {Kcal: 0, Carbs: 0, Protein: 0, Fat: 0};
@@ -136,11 +138,44 @@
       maintainAspectRatio: false,
       title: {
         display: true,
-        text: 'Daily consumption info:',
+        text: 'Monthly consumption info:',
       },
     },
   });
+
+  let categoryList = Object.keys(categories);
+  let quantities = Object.values(categories);
+console.log(categoryList);
+
+  const data_pie = {
+    labels: categoryList,
+    datasets: [
+      {
+        label: 'Kcal',
+        backgroundColor: ['blue', 'red', 'green', 'yellow', 'purple', 'cyan', 'pink', 'brown'],
+        borderColor: 'white',
+        data: quantities,
+      },
+    ],
+  };
+
+  const chart_pie = new Chart($contextPie, {
+    //data
+    type: 'pie',
+    data: data_pie,
+    options: {
+      //options
+      responsive: true,
+      maintainAspectRatio: false,
+      title: {
+        display: false,
+        text: 'Monthly consumption info:',
+      },
+    },
+  });
+
   };
 </script>
+
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>

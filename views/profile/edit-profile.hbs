@@ -23,3 +23,15 @@
 </div>
   <button>Update Account</button>
 </form>
+
+  <form id="delete-account" action="/profile/delete" method="POST">
+    <button type="button" onclick="deleteConfirm()">Delete account</button>
+  </form>
+
+<script>
+  const deleteConfirm = () => {
+    if(confirm("Delete your account?")){
+      document.getElementById("delete-account").submit();
+    }
+  }
+</script>

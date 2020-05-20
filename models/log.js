@@ -8,6 +8,9 @@ const foodSchema = new mongoose.Schema({
   amount: {
     type: Number,
   },
+  category: {
+    type: String,
+  },
   nutrients: {
     Kcal: {
       type: Number,

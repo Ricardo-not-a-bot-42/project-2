@@ -295,6 +295,19 @@ footer {
   color: white;
 }
 
+#delete-account {
+  text-align: center;
+  button {
+    background-color: darkred;
+    color: white;
+    font-size: 1.5em;
+    border-radius: 15px;
+    padding: 0.3em 2em;
+    margin: 1em;
+    box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75);
+  }
+}
+
 .month-information {
   margin: 2em auto;
   display: flex;
@@ -326,7 +339,7 @@ footer {
     .category-contents li {
       display: flex;
       flex-direction: row;
-      justify-content: space-evenly;
+      justify-content: space-between;
       h5 {
         margin: 0 2em;
       }

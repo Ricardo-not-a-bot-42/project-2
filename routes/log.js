@@ -4,7 +4,8 @@ const Log = require('./../models/log');
 const axios = require('axios');
 
 router.get('/:userId/folder', (req, res, next) => {
-  Log.find()
+  const userId = req.params.userId;
+  Log.find({ userId })
     .then((months) => {
       res.render('folder', { months });
     })
@@ -99,7 +100,7 @@ router.get('/:userId/folder/:monthId/:logname/add', (req, res, next) => {
 
 router.post('/:userId/folder/:monthId/:logname/add*', (req, res, next) => {
   console.log('entrou');
-  const { amount, Kcal, prot, carb, fat, name } = req.body;
+  const { amount, Kcal, prot, carb, fat, name, category } = req.body;
   const { userId, monthId, logname } = req.params;
   Log.findOne({ userId, _id: monthId })
     .then((doc) => {
@@ -110,6 +111,7 @@ router.post('/:userId/folder/:monthId/:logname/add*', (req, res, next) => {
       const foodLog = {
         name,
         amount,
+        category,
         nutrients: {
           Kcal: (Kcal / 100) * amount,
           prot: (prot / 100) * amount,
