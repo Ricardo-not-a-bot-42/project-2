@@ -93,7 +93,7 @@ router.get('/:userId/folder/:monthId/:logname', (req, res, next) => {
         return d.name === logname;
       });
       console.log(dayLog.foods);
-      res.render('folder/log', { dayLog, monthId });
+      res.render('folder/log', { dayLog, monthId, userId });
     })
     .catch((err) => {
       next(err);
