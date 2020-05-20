@@ -1,28 +1,26 @@
-<div class="log-selection">
-  <a href="">Select Month</a>
-  <a href="">November</a>
+<div class="log-view">
+  <h1>Viewing daily log for: {{selectedMonth.name}}/{{selectedMonth.year}}</h1>
 </div>
 
 <div>
-  <canvas class="chart-canvas"></canvas>
+  <canvas class="chart-canvas" id="chart"></canvas>
 </div>
 
 <div class="statistics">
+  <h1>Monthly totals:</h1>
+  <div>
   <div class="stat">
-    <input type="checkbox" name="" id="">
-    <h4>Calories: 10033</h4>
+    <h4>Calories: {{ selectedMonth.totalKcal }}</h4>
   </div>
   <div class="stat">
-    <input type="checkbox" name="" id="">
-    <h4>Carbs: 16858</h4>
+    <h4>Carbs: {{ selectedMonth.totalCarbs }}</h4>
   </div>
   <div class="stat">
-    <input type="checkbox" name="" id="">
-    <h4>Protein: 12345</h4>
+    <h4>Protein: {{ selectedMonth.totalProtein }}</h4>
   </div>
   <div class="stat">
-    <input type="checkbox" name="" id="">
-    <h4>Fat: 8345</h4>
+    <h4>Fat: {{ selectedMonth.totalFat }}</h4>
+  </div>
   </div>
 </div>
 
@@ -50,3 +48,99 @@
     </div>
   </div>
 </div>
+
+<script>
+  window.onload = function() {
+  const $canvas = document.getElementById('chart');
+  const $context = $canvas.getContext('2d');
+
+  const month = {{{ json selectedMonth}}};
+  const days = {{{ json selectedMonth.day}}};
+
+  let weekOneNutrients = {Kcal: 0, Carbs: 0, Protein: 0, Fat: 0};
+  let weekTwoNutrients = {Kcal: 0, Carbs: 0, Protein: 0, Fat: 0};
+  let weekThreeNutrients = {Kcal: 0, Carbs: 0, Protein: 0, Fat: 0};
+  let weekFourNutrients = {Kcal: 0, Carbs: 0, Protein: 0, Fat: 0};
+
+  for(let day of days) {
+    switch(true) {
+      case Number(day.name) <= 7:
+        weekOneNutrients.Kcal += day.totalKcal;
+        weekOneNutrients.Carbs += day.totalCarbs;
+        weekOneNutrients.Protein += day.totalProtein;
+        weekOneNutrients.Fat += day.totalFat;
+        break;
+      case Number(day.name) <= 14:
+        weekTwoNutrients.Kcal += day.totalKcal;
+        weekTwoNutrients.Carbs += day.totalCarbs;
+        weekTwoNutrients.Protein += day.totalProtein;
+        weekTwoNutrients.Fat += day.totalFat;
+        break;
+      case Number(day.name) <= 21:
+        weekThreeNutrients.Kcal += day.totalKcal;
+        weekThreeNutrients.Carbs += day.totalCarbs;
+        weekThreeNutrients.Protein += day.totalProtein;
+        weekThreeNutrients.Fat += day.totalFat;
+        break;
+      case Number(day.name) <= 31:
+        weekFourNutrients.Kcal += day.totalKcal;
+        weekFourNutrients.Carbs += day.totalCarbs;
+        weekFourNutrients.Protein += day.totalProtein;
+        weekFourNutrients.Fat += day.totalFat;
+        break;
+      
+    }
+  }
+    const weekKcal = [weekOneNutrients.Kcal, weekTwoNutrients.Kcal, weekThreeNutrients.Kcal, weekFourNutrients.Kcal, month.totalKcal]
+    const weekCarbs = [weekOneNutrients.Carbs, weekTwoNutrients.Carbs, weekThreeNutrients.Carbs, weekFourNutrients.Carbs, month.totalCarbs]
+    const weekProtein = [weekOneNutrients.Protein, weekTwoNutrients.Protein, weekThreeNutrients.Protein, weekFourNutrients.Protein, month.totalProtein]
+    const weekFat = [weekOneNutrients.Fat, weekTwoNutrients.Fat, weekThreeNutrients.Fat, weekFourNutrients.Fat, month.totalFat]
+
+  const data = {
+    labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Total'],
+    datasets: [
+      {
+        label: 'Kcal',
+        backgroundColor: 'blue',
+        borderColor: 'blue',
+        data: weekKcal,
+      },
+      {
+        label: 'Carbs',
+        backgroundColor: 'red',
+        borderColor: 'white',
+        data: weekCarbs,
+      },
+      {
+        label: 'Protein',
+        backgroundColor: 'green',
+        borderColor: 'white',
+        data: weekProtein,
+      },
+      {
+        label: 'Fat',
+        backgroundColor: 'yellow',
+        borderColor: 'white',
+        data: weekFat,
+      },
+    ],
+  };
+
+  const chart = new Chart($context, {
+    //data
+    type: 'horizontalBar',
+    data: data,
+    options: {
+      //options
+      responsive: true,
+      maintainAspectRatio: false,
+      title: {
+        display: true,
+        text: 'Daily consumption info:',
+      },
+    },
+  });
+  };
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>

@@ -68,7 +68,21 @@ router.get('/daily', routeGuard, (req, res, next) => {
 });
 
 router.get('/monthly', routeGuard, (req, res, next) => {
-  res.render('profile/monthly');
+  let selectedMonth;
+  const dateDetails = {
+    year: req.query.year,
+    month: req.query.month,
+  };
+  Log.findOne({ name: dateDetails.month, year: dateDetails.year })
+    .then((result) => {
+      selectedMonth = result;
+      res.render('profile/monthly', {
+        selectedMonth,
+      });
+    })
+    .catch((error) => {
+      next(new Error('Log not found'));
+    });
 });
 
 router.get('/edit', routeGuard, (req, res, next) => {

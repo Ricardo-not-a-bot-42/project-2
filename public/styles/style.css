@@ -276,4 +276,49 @@ footer {
       .month-information .category-info .category-contents li h5 {
         margin: 0 2em; }
 
+.title {
+  text-align: center;
+  background-color: mediumturquoise;
+  color: white; }
+
+.card-list {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-evenly; }
+
+.card {
+  display: flex;
+  width: 130px;
+  height: 130px;
+  margin: 10px;
+  display: table-cell;
+  vertical-align: middle; }
+  .card p {
+    text-align: center; }
+
+.container {
+  padding: 50px; }
+
+.add-form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly; }
+  .add-form label {
+    width: 60px; }
+  .add-form input {
+    width: 80px; }
+  .add-form select {
+    width: 80px; }
+  .add-form button {
+    margin: 0 10px; }
+
+.form-container {
+  background-color: burlywood;
+  padding: 20px; }
+
+.month-inputs {
+  display: flex;
+  flex-direction: column; }
+
 /*# sourceMappingURL=style.css.map */
