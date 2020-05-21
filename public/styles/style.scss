@@ -17,7 +17,8 @@ body {
     rgba(43, 59, 102, 1) 0%,
     rgba(21, 21, 21, 1) 100%
   );
-
+  background-repeat: no-repeat;
+  background-size: cover;
   max-width: 52em;
   padding: 0 1em;
   margin: 0 auto;
