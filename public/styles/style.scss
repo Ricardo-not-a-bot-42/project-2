@@ -463,7 +463,9 @@ footer {
 }
 
 .title {
+  display: flex;
   padding: 0 15px;
+  justify-content: space-between;
 
   color: white;
 }
@@ -573,12 +575,8 @@ footer {
   }
 }
 
-.trash {
-  //position: relative;
-  float: right;
-  margin: 20px 0 0 0;
-
-  //left: 18%;
+.icon {
+  margin-top: 20px;
 }
 
 .search {
