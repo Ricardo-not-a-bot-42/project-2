@@ -16,11 +16,18 @@ router.get("/:userId/folder", (req, res, next) => {
 
 router.post("/:userId/folder/create", (req, res, next) => {
   const { month, year } = req.body;
-  Log.create({
-    name: month,
-    year,
-    userId: req.user._id,
-  })
+  Log.findOne({ name: month, year })
+    .then((doc) => {
+      if (doc) {
+        return Promise.resolve();
+      } else {
+        return Log.create({
+          name: month,
+          year,
+          userId: req.user._id,
+        });
+      }
+    })
     .then((newDoc) => {
       res.redirect("/" + req.user._id + "/folder");
     })
@@ -56,10 +63,19 @@ router.post("/:userId/folder/:monthId/createlog", (req, res, next) => {
   const day = req.body.day;
   Log.findOne({ userId, _id: monthId })
     .then((month) => {
-      month.day.push({
-        name: day,
+      const exists = month.day.some((d) => {
+        console.log(d.name, day);
+        return d.name == day;
       });
-      return month.save();
+
+      if (exists) {
+        return Promise.resolve();
+      } else {
+        month.day.push({
+          name: day,
+        });
+        return month.save();
+      }
     })
     .then(() => {
       res.redirect("/" + req.user._id + "/folder/" + monthId);
@@ -130,7 +146,7 @@ router.get("/:userId/folder/:monthId/:logname/add", (req, res, next) => {
 
 router.post("/:userId/folder/:monthId/:logname/add*", (req, res, next) => {
   console.log("entrou");
-  const { amount, Kcal, prot, carb, fat, name, category } = req.body;
+  const { amount, Kcal, prot, carb, fat, name, category, pictureUrl } = req.body;
   const { userId, monthId, logname } = req.params;
   Log.findOne({ userId, _id: monthId })
     .then((doc) => {
@@ -142,6 +158,7 @@ router.post("/:userId/folder/:monthId/:logname/add*", (req, res, next) => {
         name,
         amount,
         category,
+        pictureUrl,
         nutrients: {
           Kcal: Math.round((Kcal / 100) * amount),
           prot: Math.round((prot / 100) * amount),
