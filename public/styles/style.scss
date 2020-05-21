@@ -1,5 +1,7 @@
 $font-sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 $grey: hsla(0, 0, 75%, 0.5);
+$buttonblue: #5f73a4;
+$bgblue: rgba(65, 89, 151, 0.5);
 
 * {
   &,
@@ -10,6 +12,12 @@ $grey: hsla(0, 0, 75%, 0.5);
 }
 
 body {
+  background: linear-gradient(
+    to bottom,
+    rgba(43, 59, 102, 1) 0%,
+    rgba(21, 21, 21, 1) 100%
+  );
+
   max-width: 52em;
   padding: 0 1em;
   margin: 0 auto;
@@ -23,25 +31,27 @@ a {
   text-decoration: none;
 }
 
+hr {
+  background-color: initial;
+  height: 3px;
+  width: 100%;
+  margin: 0;
+}
+
 nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0.5em;
-  .nav-title {
-    font-size: 1.5em;
-    font-weight: 700;
-    margin: 0 1em;
-  }
+
+  .nav-title,
   .nav-login,
   .nav-logout {
-    border: 1px solid lightseagreen;
-    color: black;
-    font-weight: 700;
+    text-align: center;
     font-size: 1.5em;
-    border-radius: 15px;
-    padding: 0 0.5em;
-    margin: 0 1em;
+    background: none;
+    border: none;
+    color: white;
   }
 }
 
@@ -98,6 +108,11 @@ img {
   }
 }
 
+.title-text {
+  color: $bgblue;
+  font-weight: bold;
+}
+
 .index-features {
   margin: 1em auto;
   display: flex;
@@ -125,8 +140,9 @@ footer {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  border-top: 1px solid black;
+  border-top: 1px solid white;
   padding-top: 0.5em;
+  color: white;
 }
 
 .sign-up,
@@ -171,11 +187,44 @@ footer {
 .profile-info {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid black;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: 0 0.5em;
+  background-color: white;
   border-radius: 15px;
   margin-top: 2em;
+  h2 {
+    font-size: 1.5em;
+    @media (min-width: 670px) {
+      font-size: 2em;
+    }
+  }
+
+  * {
+    margin: 0 1em;
+  }
+  .profile-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    text-align: center;
+    margin: 0 auto;
+    @media (min-width: 670px) {
+      flex-direction: row;
+    }
+    * {
+      margin: 0.5em;
+      font-size: 0.8em;
+      @media (min-width: 370px) {
+        font-size: 1em;
+      }
+    }
+    h4 {
+      font-weight: bold;
+    }
+  }
 }
 
 .log-management {
@@ -183,14 +232,25 @@ footer {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
+  background-color: white;
+  border-radius: 15px;
+  margin: 2em 0.5em;
+  h2 {
+    align-self: flex-start;
+    margin: 0 1em;
+  }
   a {
+    display: block;
+    align-self: stretch;
     text-align: center;
-    border-radius: 15px;
-    border: 1px solid black;
-    font-size: 2em;
-    padding: 0.1em 1em;
-    margin: 1em;
+    background-color: $bgblue;
+    border-radius: 35px;
+    margin: 1em 1em 1em;
+    font-size: 1.5em;
+    color: white;
+    @media (min-width: 370px) {
+      font-size: 2em;
+    }
   }
 
   .report-view {
@@ -210,12 +270,17 @@ footer {
       * {
         margin: 0.2em;
       }
+      label {
+        font-weight: bold;
+      }
       button {
         display: block;
+        align-self: stretch;
         text-align: center;
-        background-color: lightseagreen;
+        background-color: $bgblue;
         border-radius: 35px;
-        margin: 2em 1em;
+        border: none;
+        margin: 1em 1em 1em;
         font-size: 1.5em;
         color: white;
       }
@@ -287,12 +352,16 @@ footer {
 
 .edit-profile-button {
   display: block;
+  align-self: stretch;
   text-align: center;
-  background-color: lightseagreen;
+  background-color: $bgblue;
   border-radius: 35px;
-  margin: 2em 1em;
-  font-size: 2em;
+  margin: 1em 1em 1em;
+  font-size: 1.5em;
   color: white;
+  @media (min-width: 370px) {
+    font-size: 2em;
+  }
 }
 
 #delete-account {

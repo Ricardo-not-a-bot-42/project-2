@@ -1,18 +1,35 @@
 
 <div class="profile-info">
-  <h2>{{ user.name }}</h2>
-  <h5> <small>{{ user.email }}</small></h5>
-  <h3>Age: {{ user.age }}</h3>
-  <h3>Gender: {{ user.gender }}</h3>
+  <h2 class="title-text">PROFILE DETAILS</h2>
+  <hr>
+  <div class="profile-details">
+    <div>
+      <h4>Name</h4>
+      <h5>{{ user.name }}</h5>
+    </div>
+    <div>
+     <h4>Email</h4>
+     <h5>{{ user.email }}</h5>
+    </div>
+    <div>
+      <h4>Age</h4>
+      <h5>{{ user.age }}</h5>
+    </div>
+    <div>
+      <h4>Gender</h4>
+      <h5>{{ user.gender }}</h5>
+    </div>
+  </div>
   
-</div>
-
 <div class="edit-profile-button">
   <a href="/profile/edit">Edit Profile</a>
 </div>
+</div>
+
 
 <div class="log-management">
-  <a href="/{{ user._id}}/folder">Manage Logs</a>
+  <h2 class="title-text">VIEW LOGS</h2>
+  <hr>
 
   <div class="report-view">
   <form action="/profile/daily">
@@ -60,5 +77,6 @@
   </form>
   </div>
 
+  <a href="/{{ user._id}}/folder">Manage Logs</a>
   
 </div>

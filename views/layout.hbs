@@ -9,18 +9,12 @@
   </head>
   <body>
     <nav>
-      <a href="/" class="nav-title">Food Logger</a>
-
+      <a href="/" class="nav-title">Home</a>
       {{#if user}}
-        <!-- <a href="/">{{user.name}}'s Profile</a> -->
-        <div>
           <a href="/profile"class="nav-logout">Profile</a>
           <form action="/authentication/sign-out" method="POST">
             <button class="nav-logout">Logout</button>
           </form>
-
-        </div>
-
         {{else}}
         <a href="/authentication/sign-in" class="nav-login">Login</a>
       {{/if}}
