@@ -112,7 +112,7 @@ router.get("/:userId/folder/:monthId/:logname", (req, res, next) => {
         return d.name === logname;
       });
       console.log(dayLog.foods);
-      res.render("folder/log", { dayLog, monthId, userId });
+      res.render("folder/log", { dayLog, monthId, userId, month });
     })
     .catch((err) => {
       next(err);

@@ -1,6 +1,10 @@
 <header>
     <div class="title">
-        <h1>Months<span id="delete" class="fas fa-trash-alt fa-sm trash"></span></h1>
+        <a href="/profile">
+            <p><i class="fas fa-angle-left fa-2x icon"></i></p>
+        </a>
+        <h1>Months</h1>
+        <span id="delete" class="fas fa-trash-alt fa-2x icon"></span>
         
     </div>    
 </header>
@@ -14,7 +18,7 @@
                         
                     </form>
                     <h3 class="month-title">{{name}}/{{year}}</h3>
-                    <h2>2000</h2>
+                    <h2 class="kcal-text">{{totalKcal}}-{{day.length}}</h2>
                     <p>Daily avg Kcals</p>
                 </div>
             </a>
@@ -77,4 +81,21 @@
         
         console.log("delete");
     });
+</script>
+
+<script>
+    $avgKcalTag = document.getElementsByClassName("kcal-text");
+    
+    for(let tag of $avgKcalTag){
+        const arr = tag.innerText.split("-");
+        const totalKcal = arr[0];
+        const days = arr[1];
+        console.log(arr);
+        if(days == "0" || totalKcal == "0"){
+            tag.innerText = "---";
+        }else{
+            tag.innerText = totalKcal/days;
+        }
+        
+    }
 </script>
