@@ -1,6 +1,8 @@
 <header>
     <div class="title">
-        <h1>{{month.name}}/{{month.year}}<span id="delete" class="fas fa-trash-alt fa-sm trash"></span></h1>
+        <a href="/{{user._id}}/folder">
+            <h1>{{month.name}}/{{month.year}}<span id="delete" class="fas fa-trash-alt fa-sm trash"></span></h1>
+        </a>
     </div>    
 </header>
 <section  class="container">
@@ -20,22 +22,22 @@
                             <h3>{{name}}</h3>
                         </div>
                         <div class="day-nutrients">
-                            <div>
+                            <div class="kcal-text">
                                 <h4>{{totalKcal}}</h4>
-                                <p>Kcal</p>
+                                <p >Kcal</p>
 
                             </div>
-                            <div>
+                            <div class="carb-text">
                                  <h4>{{totalCarbs}}</h4>
-                                <p>Carbs</p>   
+                                <p >Carbs</p>   
                             </div>
-                            <div>
+                            <div class="protein-text">
                                 <h4>{{totalProtein}}</h4>
-                                <p>Protein</p>
+                                <p >Protein</p>
                             </div>
-                            <div>
+                            <div class="fat-text">
                                 <h4>{{totalFat}}</h4>
-                                <p>Fat</p>
+                                <p >Fat</p>
                             </div>
                         </div>
 
