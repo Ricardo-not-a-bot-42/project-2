@@ -17,7 +17,6 @@ router.get('/search', (req, res, next) => {
   const searchTerm = req.query.name;
   const direction = req.query.direction;
   const nextPage = Math.max(0, Number(req.query.session) + Number(direction));
-  console.log(req.query.session);
   axios
     .get(
       `https://api.edamam.com/api/food-database/parser?session=${nextPage *
@@ -27,10 +26,20 @@ router.get('/search', (req, res, next) => {
     )
 
     .then((results) => {
-      console.log(results.data.hints[0]);
       const foodData = results.data.hints;
+      for (let food of foodData) {
+        food.food.nutrients.ENERC_KCAL = food.food.nutrients.ENERC_KCAL.toFixed();
+        food.food.nutrients.CHOCDF = food.food.nutrients.CHOCDF.toFixed();
+        food.food.nutrients.PROCNT = food.food.nutrients.PROCNT.toFixed();
+        food.food.nutrients.FAT = food.food.nutrients.FAT.toFixed();
+      }
+      console.log(foodData);
       const searchTerm = results.data.text;
-      res.render('search-results', { foodData, searchTerm, nextPage });
+      res.render('search-results', {
+        foodData,
+        searchTerm,
+        nextPage,
+      });
     })
     .catch((error) => {
       next(error);
@@ -55,9 +64,40 @@ router.get('/food/:id', (req, res, next) => {
     )
     .then((result) => {
       const foodDetails = result.data;
+      foodDetails.totalWeight = foodDetails.totalWeight.toFixed();
+      let foodNutrientsPerHundred = {};
+      let nutrientsDailyPerHundred = {};
+      for (let nutrient in foodDetails.totalNutrients) {
+        foodNutrientsPerHundred[foodDetails.totalNutrients[nutrient].label] =
+          (
+            (foodDetails.totalNutrients[nutrient].quantity * 100) /
+            foodDetails.totalWeight
+          )
+            .toFixed(2)
+            .toString() + foodDetails.totalNutrients[nutrient].unit;
+      }
+      for (let nutrient in foodDetails.totalDaily) {
+        nutrientsDailyPerHundred[foodDetails.totalDaily[nutrient].label] =
+          (
+            (foodDetails.totalDaily[nutrient].quantity * 100) /
+            foodDetails.totalWeight
+          )
+            .toFixed(2)
+            .toString() + foodDetails.totalDaily[nutrient].unit;
+      }
+      const healthLabels = [];
+      for (let label of foodDetails.healthLabels) {
+        healthLabels.push(label.replace(/_/g, ' '));
+      }
       const foodInfo = result.data.ingredients[0].parsed[0];
       console.log(result.data);
-      res.render('single-view', { foodDetails, foodInfo });
+      res.render('single-view', {
+        foodDetails,
+        foodInfo,
+        foodNutrientsPerHundred,
+        nutrientsDailyPerHundred,
+        healthLabels,
+      });
     });
 });
 

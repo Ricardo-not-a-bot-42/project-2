@@ -1,2 +1,46 @@
-<h1> {{ foodInfo.food }}</h1>
-<h2>Calories: {{ foodDetails.calories }}</h2>
+
+<div class="single-food-info">
+  <h2 class="title-text">INFORMATION</h2>
+  <hr>
+    <h1> {{ foodInfo.food }}</h1>
+  <div class="food-information">
+    <h2>Weight<br> <strong>{{foodDetails.totalWeight}}g</strong></h2>
+    <h2>Calories<br> <strong>{{ foodDetails.calories }}</strong></h2>
+  </div>
+</div>
+
+<div class="health-labels">
+    <h2 class="title-text">HEALTH LABELS</h2>
+  <hr>
+  <div class="labels">
+    {{#each healthLabels}}
+    <div class="label">
+      <h4>{{this}}</h4>
+    </div>
+    {{/each}}
+  </div>
+</div>
+
+<div class="nutrient-list">
+<div class="nutrients hundred">
+  <h2 class="title-text">NUTRIENTS (100g)</h2>
+  <hr>
+{{#each foodNutrientsPerHundred}}
+<div class="nutrient">
+  <h4>{{@key}}</h4>
+  <h4>{{this}}</h4>
+</div>
+{{/each}}
+</div>
+
+<div class="nutrients daily">
+  <h2 class="title-text">DAILY % (100g)</h2>
+  <hr>
+{{#each nutrientsDailyPerHundred}}
+<div class="nutrient">
+  <h4>{{@key}}</h4>
+  <h4>{{this}}</h4>
+</div>
+{{/each}}
+</div>
+</div>

@@ -157,6 +157,84 @@ img {
   }
 }
 
+.single-food-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 0.5em;
+  background-color: white;
+  border-radius: 15px;
+  margin-top: 2em;
+  text-align: center;
+  .food-information {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    * {
+      margin: 0 1em;
+    }
+    text-align: center;
+  }
+}
+
+.health-labels {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0 0.5em;
+  background-color: white;
+  border-radius: 15px;
+  margin-top: 2em;
+  .labels {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    .label {
+      background-color: $bgblue;
+      border-radius: 20px;
+      margin: 1em;
+      text-align: left;
+      min-width: 40%;
+      h4 {
+        padding: 0 0.5em;
+        color: white;
+      }
+    }
+  }
+}
+
+.nutrient-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 2em;
+  .nutrients {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 0 0.5em;
+    background-color: white;
+    border-radius: 15px;
+    margin-top: 2em;
+  }
+  .nutrient {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: $bgblue;
+    border-radius: 20px;
+    margin: 0.5em;
+    h4 {
+      margin: 0 0.3em;
+      color: white;
+    }
+  }
+}
+
 footer {
   display: flex;
   flex-direction: row;
@@ -202,7 +280,8 @@ footer {
   }
 }
 
-.profile-info {
+.profile-info,
+.lookup {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -239,6 +318,9 @@ footer {
     h4 {
       font-weight: bold;
     }
+  }
+  .lookup-container {
+    align-self: center;
   }
 }
 
