@@ -1,6 +1,8 @@
 <header>
     <div class="title">
-        <h1>{{dayLog.name}}<span id="delete" class="fas fa-trash-alt fa-sm trash"></span></h1>
+        <a href="/{{user._id}}/folder/{{monthId}}">
+            <h1>{{dayLog.name}}<span id="delete" class="fas fa-trash-alt fa-sm trash"></span></h1>
+        </a>
         
     </div>   
 </header>
@@ -29,19 +31,19 @@
                     <p>{{amount}}g - {{name}}</p>
                 </div>
                 <div class="food-item-body"> 
-                    <div>
+                    <div class="kcal-text">
                         <h5>{{nutrients.Kcal}}</h5>
                         <p>Kcal</p>
                     </div>
-                    <div>
+                    <div class="carb-text">
                         <h5>{{nutrients.carb}}</h5>
                         <p>carb</p>
                     </div>
-                    <div>
+                    <div class="protein-text">
                         <h5>{{nutrients.prot}}</h5>
                         <p>prot</p>
                     </div>
-                    <div>
+                    <div class="fat-text">
                         <h5>{{nutrients.fat}}</h5>
                         <p>fat</p>
                     </div>
