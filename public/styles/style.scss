@@ -1,5 +1,6 @@
 $font-sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 $grey: hsla(0, 0, 75%, 0.5);
+$mainTextcolor: slategray;
 //$buttonblue: #5f73a4;
 $buttonblue: #5fa474;
 $deleteRed: #a45f6e;
@@ -492,6 +493,7 @@ footer {
   }
 
   h3.month-title {
+    color: $mainTextcolor;
     margin-bottom: 30px;
   }
 }
@@ -504,6 +506,7 @@ footer {
 .day-title {
   border-right: 1px solid gray;
   width: 70px;
+  color: $mainTextcolor;
 }
 
 .day-nutrients {
@@ -706,6 +709,7 @@ footer {
   .searched-item-title {
     height: 60px;
     p {
+      color: $mainTextcolor;
       text-align: start;
       line-height: 1.2rem;
     }
