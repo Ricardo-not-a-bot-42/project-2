@@ -648,6 +648,11 @@ footer {
     margin-bottom: 0;
   }
   
+  h5,
+  p {
+    text-align: center;
+  }
+  
   .deleteFood {
     button {
       width: 2rem;
@@ -718,3 +723,21 @@ input:focus,
 button:focus {
   outline: none;
 }
+
+.kcal-text {
+  color: crimson;
+}
+
+.carb-text {
+  color: darkmagenta;
+}
+
+.protein-text {
+  color: darkorange;
+}
+
+.fat-text {
+  color: darkslateblue;
+}
+
+
