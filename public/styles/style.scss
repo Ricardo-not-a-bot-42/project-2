@@ -515,6 +515,7 @@ footer {
   input {
     width: 80px;
   }
+
   select {
     width: 80px;
   }
@@ -558,7 +559,8 @@ footer {
 .trash {
   //position: relative;
   float: right;
-  margin: 20px 20px 0 0;
+  margin: 20px 0 0 0;
+
   //left: 18%;
 }
 
@@ -576,6 +578,7 @@ footer {
     border-radius: 45px;
     margin: 0 5px;
     width: 100%;
+    padding-left: 20px;
   }
 
   button {
@@ -606,12 +609,27 @@ footer {
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
+  p {
+    width: 230px;
+    text-align: start;
+  }
+
+  img {
+    border-radius: 50%;
+    width: 30px;
+    max-width: 30px;
+  }
 }
 
 .food-item-body {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  height: 40px;
+  h5 {
+    margin-top: 5px;
+    margin-bottom: 0;
+  }
 }
 
 .deleteFood {
@@ -631,9 +649,16 @@ footer {
   flex-direction: row;
   input {
     height: 40px;
-    width: 50%;
+    width: 70px;
+    padding-left: 5px;
   }
   button {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background-color: cadetblue;
+    border: 0;
+    color: white;
   }
 
   form {
@@ -644,7 +669,33 @@ footer {
 .searched-item-img {
   width: 180px;
   img {
+    border-radius: 50%;
     width: 100px;
     max-width: 100px;
   }
+}
+
+.searched-item-info {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  //justify-content: space-between;
+
+  .searched-item-title {
+    height: 60px;
+    p {
+      text-align: start;
+      line-height: 1.2rem;
+    }
+  }
+
+  .searched-item-body {
+    height: 40px;
+    padding-left: 85px;
+  }
+}
+
+input:focus,
+button:focus {
+  outline: none;
 }
