@@ -497,7 +497,7 @@ footer {
 
 .day-title {
   border-right: 1px solid gray;
-  width: 50px;
+  width: 70px;
 }
 
 .day-nutrients {
@@ -509,10 +509,12 @@ footer {
   p {
     font-size: 12px;
   }
-
-  h2 {
-    font-size: 20px;
+  
+  h4,
+  p {
+    text-align: center;
   }
+
 }
 
 .add-form {
