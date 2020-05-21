@@ -641,19 +641,21 @@ footer {
     margin-top: 5px;
     margin-bottom: 0;
   }
-}
-
-.deleteFood {
-  button {
-    width: 2rem;
-    height: 2rem;
-    font-size: 10px;
-    border-radius: 45px;
-    border: 1px solid red;
-    background-color: red;
-    color: white;
+  
+  .deleteFood {
+    button {
+      width: 2rem;
+      height: 2rem;
+      font-size: 10px;
+      border-radius: 45px;
+      border: 1px solid red;
+      background-color: red;
+      color: white;
+    }
   }
 }
+
+
 
 .searched-item {
   display: flex;
