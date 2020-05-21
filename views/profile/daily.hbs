@@ -1,6 +1,6 @@
 
 <div class="log-view">
-  <h1>Viewing daily log for: {{selectedDay.name}}/{{selectedMonth.name}}/{{selectedMonth.year}}</h1>
+  <h1>{{selectedDay.name}} / {{selectedMonth.name}} / 20{{selectedMonth.year}}</h1>
 </div>
 
 <div>
@@ -8,37 +8,58 @@
 </div>
 
 <div class="statistics">
-  <h1>Daily totals:</h1>
-  <div>
-      <div class="stat">
-    <h4>Calories: {{selectedDay.totalKcal}}/{{recommendedCalories}}</h4>
+  <h2 class="title-text">NUTRIENTS</h2>
+  <hr>
+  <div class="stat-list">
+  <div class="stat">
+    <h4>Calories<br> <strong>{{selectedDay.totalKcal}} / {{recommendedCalories}}cal</strong></h4>
   </div>
   <div class="stat">
-    <h4>Carbs: {{selectedDay.totalCarbs}}</h4>
+    <h4>Carbs<br> <strong>{{selectedDay.totalCarbs}}g</strong></h4>
   </div>
   <div class="stat">
-    <h4>Protein: {{selectedDay.totalProtein}}</h4>
+    <h4>Protein<br> <strong>{{selectedDay.totalProtein}}g</strong></h4>
   </div>
   <div class="stat">
-    <h4>Fat: {{selectedDay.totalFat}}</h4>
+    <h4>Fat<br> <strong>{{selectedDay.totalFat}}g</strong></h4>
   </div>
   </div>
 
 </div>
 
 <div class="daily-add-food">
-  <a href="/{{selectedMonth.userId}}/folder/{{selectedMonth._id}}/{{selectedDay.name}}">Add Food</a>
+  <a href="/{{selectedMonth.userId}}/folder/{{selectedMonth._id}}/{{selectedDay.name}}">ADD FOOD</a>
 </div>
 
 <div class="daily-food-list">
-  <h3>Eaten Today:</h3>
+  <h2 class="title-text">EATEN TODAY</h2>
   <hr>
   <ul>
     {{#each selectedDay.foods}}
-        <li><div class="daily-food-item">
-      <h5>{{name}}</h5>
-      <h5>Calories: {{nutrients.Kcal}}</h5>
-    </div></li>
+        <li><div class="food-item">
+            <div class="food-item-head"> 
+                <h4>{{name}}</h4>
+                <h4>{{amount}}g</h4>
+            </div>
+            <div class="food-item-body"> 
+                <div>
+                    <p>Calories</p>
+                    <p><strong>{{nutrients.Kcal}}</strong>cal</p>
+                </div>
+                <div>
+                    <p>Carbs</p>
+                    <p><strong>{{nutrients.carb}}</strong>g</p>
+                </div>
+                <div>
+                    <p>Protein</p>
+                    <p><strong>{{nutrients.prot}}</strong>g</p>
+                </div>
+                <div>
+                    <p>Fat</p>
+                    <p><strong>{{nutrients.fat}}</strong>g</p>
+                </div>
+            </div>  
+        </div></li>
     {{/each}}
   </ul>
 </div>
@@ -76,25 +97,25 @@
     datasets: [
       {
         label: 'Kcal',
-        backgroundColor: 'blue',
-        borderColor: 'blue',
+        backgroundColor: '#EC8288',
+        borderColor: 'white',
         data: foodKcal,
       },
       {
         label: 'Carbs',
-        backgroundColor: 'red',
+        backgroundColor: '#884FCF',
         borderColor: 'white',
         data: foodCarb,
       },
       {
         label: 'Protein',
-        backgroundColor: 'green',
+        backgroundColor: '#FBD71D',
         borderColor: 'white',
         data: foodProtein,
       },
       {
         label: 'Fat',
-        backgroundColor: 'yellow',
+        backgroundColor: '#E89924',
         borderColor: 'white',
         data: foodFat,
       },

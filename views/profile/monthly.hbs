@@ -1,5 +1,5 @@
 <div class="log-view">
-  <h1>Viewing monthly log for: {{selectedMonth.name}}/{{selectedMonth.year}}</h1>
+  <h1>{{selectedMonth.name}} / {{selectedMonth.year}}</h1>
 </div>
 
 <div>
@@ -7,19 +7,20 @@
 </div>
 
 <div class="statistics">
-  <h1>Monthly totals:</h1>
-  <div>
+  <h2 class="title-text">MONTH TOTAL</h2>
+  <hr>
+  <div class="stat-list">
   <div class="stat">
-    <h4>Calories: {{ selectedMonth.totalKcal }}</h4>
+    <h4>Calories<br> <strong>{{ selectedMonth.totalKcal }}cal</strong></h4>
   </div>
   <div class="stat">
-    <h4>Carbs: {{ selectedMonth.totalCarbs }}</h4>
+    <h4>Carbs<br> <strong>{{ selectedMonth.totalCarbs }}g</strong></h4>
   </div>
   <div class="stat">
-    <h4>Protein: {{ selectedMonth.totalProtein }}</h4>
+    <h4>Protein<br> <strong>{{ selectedMonth.totalProtein }}g</strong></h4>
   </div>
   <div class="stat">
-    <h4>Fat: {{ selectedMonth.totalFat }}</h4>
+    <h4>Fat<br> <strong>{{ selectedMonth.totalFat }}g</strong></h4>
   </div>
   </div>
 </div>
@@ -30,8 +31,8 @@
   </div>
   <div class="category-info">
     <div class="category-header">
-      <h4>Category</h4>
-      <h4>Qty</h4>
+      <h4 class="title-text">CATEGORY</h4>
+      <h4 class="title-text">QTY</h4>
     </div>
     <hr>
     <div class="category-contents">
@@ -103,25 +104,25 @@
     datasets: [
       {
         label: 'Kcal',
-        backgroundColor: 'blue',
-        borderColor: 'blue',
+        backgroundColor: '#EC8288',
+        borderColor: 'white',
         data: weekKcal,
       },
       {
         label: 'Carbs',
-        backgroundColor: 'red',
+        backgroundColor: '#884FCF',
         borderColor: 'white',
         data: weekCarbs,
       },
       {
         label: 'Protein',
-        backgroundColor: 'green',
+        backgroundColor: '#FBD71D',
         borderColor: 'white',
         data: weekProtein,
       },
       {
         label: 'Fat',
-        backgroundColor: 'yellow',
+        backgroundColor: '#E89924',
         borderColor: 'white',
         data: weekFat,
       },
@@ -152,7 +153,7 @@ console.log(categoryList);
     datasets: [
       {
         label: 'Kcal',
-        backgroundColor: ['blue', 'red', 'green', 'yellow', 'purple', 'cyan', 'pink', 'brown'],
+        backgroundColor: ['#EC8288', '#884FCF', '#FBD71D', '#E89924'],
         borderColor: 'white',
         data: quantities,
       },
@@ -165,6 +166,11 @@ console.log(categoryList);
     data: data_pie,
     options: {
       //options
+      legend: {
+            labels: {
+              fontColor: 'white'
+            }
+        },
       responsive: true,
       maintainAspectRatio: false,
       title: {
