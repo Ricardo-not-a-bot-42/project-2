@@ -1,28 +1,41 @@
-<header>
-    <div class="title">
-        <h1>Search Results</h1>
-        
-    </div>    
 </header>
 <section class="container">
     {{#each foodData}}
     {{#if food}}
-    <div>
-        <img src="{{ food.image }}" alt="">
-        <h4>{{ food.label }}</h4>
-        <form action="" method="POST">
-            <label for="food">{{ food.label }}</label>
-            <input type="text" name="amount">
-            <input type="hidden" name="name" value="{{food.label}}">
-            <input type="hidden" name="Kcal" value={{food.nutrients.ENERC_KCAL}}>
-            <input type="hidden" name="carb" value={{food.nutrients.CHOCDF}}>
-            <input type="hidden" name="prot" value={{food.nutrients.PROCNT}}>
-            <input type="hidden" name="fat" value={{food.nutrients.FAT}}>
-            <input type="hidden" name="category" value={{food.category}}>
-            
+    <div class="card">
+        <div class="searched-item">
+            <div class="searched-item-img">
+                <img src="{{ food.image }}" alt="">
+            </div>
+            <div class="searched-item-info">
+                <div class="searched-item-title">
+                    <p class="label">{{ food.label }}</p>
 
-            <button>ADD</button>
-        </form>
+                </div>
+                <div class="searched-item-body">
+                    <form action="" method="POST">
+                    
+                        <input type="text" name="amount" placeholder="quantity">
+                        <input class="label-input" type="hidden" name="name" value="{{food.label}}">
+                        <input type="hidden" name="Kcal" value={{food.nutrients.ENERC_KCAL}}>
+                        <input type="hidden" name="carb" value={{food.nutrients.CHOCDF}}>
+                        <input type="hidden" name="prot" value={{food.nutrients.PROCNT}}>
+                        <input type="hidden" name="fat" value={{food.nutrients.FAT}}>
+                        <input type="hidden" name="category" value={{food.category}}>
+                        <input type="hidden" name="pictureUrl" value={{food.image}}>
+                        
+
+                        <button>+</button>
+                    </form>
+
+                </div>
+                
+                
+
+            </div>
+            
+            
+        </div>
     </div>
     {{/if}}
     {{/each}}
@@ -43,3 +56,48 @@
 <input type="hidden" name="name" value="{{searchTerm}}">
   <button>Previous Page</button>
 </form>
+
+<script>
+    $labels = document.getElementsByClassName('label');
+    $labelsInputs = document.getElementsByClassName('label-input');
+
+    for(let label of $labels){
+        const arr = label.innerText.toLowerCase().split(" ");
+        let newText = "";
+
+        if(arr.length > 6){
+            const slicedArr = arr.slice(0,6);
+            newText = slicedArr.join(" ");
+        }else{
+            newText = arr.join(" ");
+        }
+        const capitalizedText = newText.charAt(0).toUpperCase() + newText.slice(1)
+        
+        
+        console.log(capitalizedText, arr);
+
+        label.innerText = capitalizedText;
+    }
+
+
+    for(let labelInput of $labelsInputs){
+        const arr = labelInput.value.toLowerCase().split(" ");
+        let newText = "";
+
+        if(arr.length > 6){
+            const slicedArr = arr.slice(0,6);
+            newText = slicedArr.join(" ");
+        }else{
+            newText = arr.join(" ");
+        }
+        const capitalizedText = newText.charAt(0).toUpperCase() + newText.slice(1)
+        
+        
+        
+
+        labelInput.value = capitalizedText;
+        console.log(labelInput.value);
+    }
+
+</script>
+

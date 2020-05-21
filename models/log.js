@@ -11,6 +11,9 @@ const foodSchema = new mongoose.Schema({
   category: {
     type: String,
   },
+  pictureUrl: {
+    type: String,
+  },
   nutrients: {
     Kcal: {
       type: Number,
