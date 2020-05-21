@@ -1,41 +1,81 @@
 <header>
     <div class="title">
-        <h1>{{dayLog.name}}</h1>
+        <h1>{{dayLog.name}}<span id="delete" class="fas fa-trash-alt trash"></span></h1>
+        
     </div>    
 </header>
-<section class="container">
-
-    <form action="/{{user._id}}/folder/{{monthId}}/{{dayLog.name}}/add" method="GET">
-        <input type="text" name="name" placeholder="food" id="">
-        <input type="hidden" name="direction" value="1">
-        <input type="hidden" name="session" value="-1">
-        <button>Search</button>
-      </form>
+<section class="search">
+    
+        <form class="search-form" action="/{{user._id}}/folder/{{monthId}}/{{dayLog.name}}/add" method="GET">
+            <input type="text" name="name" placeholder="   food" id="">
+            <input type="hidden" name="direction" value="1">
+            <input type="hidden" name="session" value="-1">
+            <button>Search</button>
+        </form>
+     
 </section>
 <section class="container">
+    
     {{#each dayLog.foods}}
-    <div>
-        <div> 
-            <p>{{name}}</p><span>{{amount}}</span>
+    
+        <div class="food-item">
+            <div class="food-item-head"> 
+                <h4>{{name}}</h4>
+                <h4>{{amount}}</h4>
+            </div>
+            <div class="food-item-body"> 
+                <div>
+                    <p>{{nutrients.Kcal}}</p>
+                    <p>Kcal</p>
+                </div>
+                <div>
+                    <p>{{nutrients.carb}}</p>
+                    <p>carb</p>
+                </div>
+                <div>
+                    <p>{{nutrients.prot}}</p>
+                    <p>prot</p>
+                </div>
+                <div>
+                    <p>{{nutrients.fat}}</p>
+                    <p>fat</p>
+                </div>
+                
+                <form class="deleteFood" style="display:none" action="/{{../userId}}/folder/{{../monthId}}/{{../dayLog.name}}/{{_id}}/delete" method="POST">
+        
+                        <button>X</button>
+                                    
+                </form>
+                
+            </div>  
         </div>
-        <div> 
-            <div>
-                <p>{{nutrients.Kcal}}</p>
-                <p>Kcal</p>
-            </div>
-            <div>
-                <p>{{nutrients.carb}}</p>
-                <p>carb</p>
-            </div>
-            <div>
-                <p>{{nutrients.prot}}</p>
-                <p>prot</p>
-            </div>
-            <div>
-                <p>{{nutrients.fat}}</p>
-                <p>fat</p>
-            </div>
-        </div>
-    </div>
+        
+    <hr>
+    
     {{/each}}
+    
 </section>
+
+<script src="https://kit.fontawesome.com/49cb587e31.js" crossorigin="anonymous"></script>
+
+<script>
+    $delete = document.getElementById("delete");
+    $links = document.getElementsByClassName("deleteFood");
+    clicked = false;
+    $delete.addEventListener("click", (event)=>{
+        clicked = !clicked;
+        if(clicked){
+            for(let link of $links){
+                link.style = "";
+                
+            }
+        }else{
+            for(let link of $links){
+                link.style = "display:none";
+            }
+        }
+        
+        console.log("delete");
+    });
+</script>
+
