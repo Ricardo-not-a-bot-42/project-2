@@ -1,8 +1,20 @@
 $font-sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 $grey: hsla(0, 0, 75%, 0.5);
-$buttonblue: #5f73a4;
+//$buttonblue: #5f73a4;
+$buttonblue: #5fa474;
 $deleteRed: #a45f6e;
-$bgblue: rgba(65, 89, 151, 0.5);
+//$bgblue: rgba(65, 89, 151, 0.5);
+$bgblue: rgba(89, 151, 65, 0.5);
+$bodyblue: linear-gradient(
+  to bottom,
+  rgba(43, 59, 102, 1) 0%,
+  rgba(21, 21, 21, 1) 100%
+);
+$bodygreen: linear-gradient(
+  to bottom,
+  rgba(136, 184, 172, 1) 0%,
+  rgba(43, 73, 63, 0.75) 60%
+);
 
 * {
   &,
@@ -13,11 +25,7 @@ $bgblue: rgba(65, 89, 151, 0.5);
 }
 
 body {
-  background: linear-gradient(
-    to bottom,
-    rgba(43, 59, 102, 1) 0%,
-    rgba(21, 21, 21, 1) 100%
-  );
+  background: $bodygreen;
   background-repeat: no-repeat;
   background-size: cover;
   max-width: 52em;
@@ -299,7 +307,10 @@ footer {
   text-align: center;
   color: white;
   h1 {
-    font-size: 3em;
+    font-size: 2.5em;
+    @media (min-width: 380px) {
+      font-size: 3em;
+    }
   }
 }
 
