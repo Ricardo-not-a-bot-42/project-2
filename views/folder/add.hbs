@@ -43,19 +43,22 @@
 
 
 
-<form action="/{{user._id}}/folder/{{monthId}}/{{logname}}/add">
-<input type="hidden" name="session" value="{{ nextPage }}">
-<input type="hidden" name="direction" value="1">
-<input type="hidden" name="name" value="{{searchTerm}}">
-  <button>Next Page</button>
-</form>
+<section class="next-previous-btn">
+    <form action="/{{user._id}}/folder/{{monthId}}/{{logname}}/add">
+        <input type="hidden" name="session" value="{{ nextPage }}">
+        <input type="hidden" name="direction" value="1">
+        <input type="hidden" name="name" value="{{searchTerm}}">
+        <button>Next Page</button>
+    </form>
 
-<form action="/{{user._id}}/folder/{{monthId}}/{{logname}}/add">
-<input type="hidden" name="session" value="{{ nextPage }}">
-<input type="hidden" name="direction" value="-1">
-<input type="hidden" name="name" value="{{searchTerm}}">
-  <button>Previous Page</button>
-</form>
+    <form action="/{{user._id}}/folder/{{monthId}}/{{logname}}/add">
+        <input type="hidden" name="session" value="{{ nextPage }}">
+        <input type="hidden" name="direction" value="-1">
+        <input type="hidden" name="name" value="{{searchTerm}}">
+        <button>Previous Page</button>
+    </form>
+
+</section>
 
 <script>
     $labels = document.getElementsByClassName('label');
