@@ -708,4 +708,14 @@ button:focus {
 .fat-text {
   color: darkslateblue; }
 
+.next-previous-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 10px 15px; }
+  .next-previous-btn button {
+    background-color: white;
+    border-radius: 15px;
+    border: 0; }
+
 /*# sourceMappingURL=style.css.map */

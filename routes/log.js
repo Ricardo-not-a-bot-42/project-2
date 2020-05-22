@@ -2,9 +2,11 @@ const { Router } = require("express");
 const router = Router();
 const Log = require("./../models/log");
 const axios = require("axios");
+const routeGuard = require("./../middleware/route-guard");
 
-router.get("/:userId/folder", (req, res, next) => {
+router.get("/:userId/folder", routeGuard, (req, res, next) => {
   const userId = req.params.userId;
+  if (req.user._id != userId) next(new Error("You don't have access to this page"));
   Log.find({ userId })
     .then((months) => {
       res.render("folder", { months });
@@ -14,9 +16,10 @@ router.get("/:userId/folder", (req, res, next) => {
     });
 });
 
-router.post("/:userId/folder/create", (req, res, next) => {
+router.post("/:userId/folder/create", routeGuard, (req, res, next) => {
   const { month, year } = req.body;
-  const userId = req.user._id;
+  const userId = req.params.userId;
+  if (req.user._id != userId) next(new Error("You don't have access to this page"));
   Log.findOne({ name: month, year, userId })
     .then((doc) => {
       if (doc) {
@@ -37,8 +40,9 @@ router.post("/:userId/folder/create", (req, res, next) => {
     });
 });
 
-router.get("/:userId/folder/:monthId", (req, res, next) => {
+router.get("/:userId/folder/:monthId", routeGuard, (req, res, next) => {
   const { userId, monthId } = req.params;
+  if (req.user._id != userId) next(new Error("You don't have access to this page"));
   Log.findOne({ userId, _id: monthId })
     .then((month) => {
       month.day.sort((a, b) => b.name - a.name);
@@ -49,9 +53,10 @@ router.get("/:userId/folder/:monthId", (req, res, next) => {
     });
 });
 
-router.post("/:userId/folder/:monthId/delete", (req, res, next) => {
+router.post("/:userId/folder/:monthId/delete", routeGuard, (req, res, next) => {
   const { userId, monthId } = req.params;
-  Log.findOneAndRemove({ userId, _id: monthId })
+  if (req.user._id != userId) next(new Error("You don't have access to this page"));
+  Log.findOneAndRemove({ userId: req.user._id, _id: monthId })
     .then((month) => {
       res.redirect("/" + req.user._id + "/folder/");
     })
@@ -60,8 +65,9 @@ router.post("/:userId/folder/:monthId/delete", (req, res, next) => {
     });
 });
 
-router.post("/:userId/folder/:monthId/createlog", (req, res, next) => {
+router.post("/:userId/folder/:monthId/createlog", routeGuard, (req, res, next) => {
   const { userId, monthId } = req.params;
+  if (req.user._id != userId) next(new Error("You don't have access to this page"));
   const day = req.body.day;
   Log.findOne({ userId, _id: monthId })
     .then((month) => {
@@ -87,8 +93,9 @@ router.post("/:userId/folder/:monthId/createlog", (req, res, next) => {
     });
 });
 
-router.post("/:userId/folder/:monthId/:logname/delete", (req, res, next) => {
+router.post("/:userId/folder/:monthId/:logname/delete", routeGuard, (req, res, next) => {
   const { userId, monthId, logname } = req.params;
+  if (req.user._id != userId) next(new Error("You don't have access to this page"));
   Log.findOne({ userId, _id: monthId })
     .then((doc) => {
       const dayIndex = doc.day.findIndex((d) => {
@@ -106,14 +113,16 @@ router.post("/:userId/folder/:monthId/:logname/delete", (req, res, next) => {
     });
 });
 
-router.get("/:userId/folder/:monthId/:logname", (req, res, next) => {
+router.get("/:userId/folder/:monthId/:logname", routeGuard, (req, res, next) => {
   const { userId, monthId, logname } = req.params;
+  if (req.user._id != userId) next(new Error("You don't have access to this page"));
   Log.findOne({ userId, _id: monthId })
     .then((month) => {
       const dayLog = month.day.find((d) => {
         return d.name === logname;
       });
       console.log(dayLog.foods);
+
       res.render("folder/log", { dayLog, monthId, userId, month });
     })
     .catch((err) => {
@@ -122,11 +131,12 @@ router.get("/:userId/folder/:monthId/:logname", (req, res, next) => {
 });
 
 router.get("/:userId/folder/:monthId/:logname/add", (req, res, next) => {
-  const { monthId, logname } = req.params;
+  const { monthId, logname, userId } = req.params;
   const searchTerm = req.query.name;
   const direction = req.query.direction;
   const nextPage = Math.max(0, Number(req.query.session) + Number(direction));
   console.log(req.query.session);
+  if (req.user._id != userId) next(new Error("You don't have access to this page"));
   axios
     .get(
       `https://api.edamam.com/api/food-database/parser?session=${nextPage * 44}&ingr=${searchTerm}&app_id=${
@@ -137,7 +147,7 @@ router.get("/:userId/folder/:monthId/:logname/add", (req, res, next) => {
     .then((results) => {
       console.log(results.data.hints);
       const foodData = results.data.hints;
-      res.render("folder/add", { foodData, nextPage, monthId, logname });
+      res.render("folder/add", { searchTerm, foodData, nextPage, monthId, logname });
     })
     .catch((error) => {
       next(error);
@@ -146,10 +156,10 @@ router.get("/:userId/folder/:monthId/:logname/add", (req, res, next) => {
   //
 });
 
-router.post("/:userId/folder/:monthId/:logname/add*", (req, res, next) => {
-  console.log("entrou");
+router.post("/:userId/folder/:monthId/:logname/add*", routeGuard, (req, res, next) => {
   const { amount, Kcal, prot, carb, fat, name, category, pictureUrl } = req.body;
   const { userId, monthId, logname } = req.params;
+  if (req.user._id != userId) next(new Error("You don't have access to this page"));
   Log.findOne({ userId, _id: monthId })
     .then((doc) => {
       const dayIndex = doc.day.findIndex((d) => {
@@ -189,8 +199,9 @@ router.post("/:userId/folder/:monthId/:logname/add*", (req, res, next) => {
     });
 });
 
-router.post("/:userId/folder/:monthId/:logname/:foodId/delete", (req, res, next) => {
+router.post("/:userId/folder/:monthId/:logname/:foodId/delete", routeGuard, (req, res, next) => {
   const { userId, monthId, logname, foodId } = req.params;
+  if (req.user._id != userId) next(new Error("You don't have access to this page"));
   Log.findOne({ userId, _id: monthId })
     .then((doc) => {
       const dayIndex = doc.day.findIndex((d) => {
@@ -215,3 +226,4 @@ router.post("/:userId/folder/:monthId/:logname/:foodId/delete", (req, res, next)
 });
 
 module.exports = router;
+
