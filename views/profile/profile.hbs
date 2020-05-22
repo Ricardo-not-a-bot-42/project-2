@@ -4,20 +4,13 @@
   <hr>
   <div class="profile-details">
     <div>
-      <h4>Name</h4>
-      <h5>{{ user.name }}</h5>
+      <img src="{{ user.profilePic }}" alt="">
     </div>
     <div>
-     <h4>Email</h4>
-     <h5>{{ user.email }}</h5>
+      <h2>{{ user.name }} - {{user.age}}, {{user.gender}}</h2>
+      <h4>{{ user.email }}</h4>
     </div>
     <div>
-      <h4>Age</h4>
-      <h5>{{ user.age }}</h5>
-    </div>
-    <div>
-      <h4>Gender</h4>
-      <h5>{{ user.gender }}</h5>
     </div>
   </div>
   
@@ -41,15 +34,28 @@
 
 
 <div class="log-management">
-  <h2 class="title-text">VIEW LOGS</h2>
+  <h2 class="title-text">DAILY REPORT</h2>
   <hr>
 
   <div class="report-view">
   <form action="/profile/daily">
-    <label for="year-input">Year</label>
-    <input type="number" name="year" id="year-input" min="20" required>
-    <label for="month-input">Month</label>
-    <select name="month" id="month-input">
+    <select name="year" id="year-input" required>
+      <option value="">Year</option>
+      <option value="20">2020</option>
+      <option value="21">2021</option>
+      <option value="22">2022</option>
+      <option value="23">2023</option>
+      <option value="24">2024</option>
+      <option value="25">2025</option>
+      <option value="26">2026</option>
+      <option value="27">2027</option>
+      <option value="28">2028</option>
+      <option value="29">2029</option>
+      <option value="30">2030</option>
+      <option value="31">2031</option>
+    </select>
+    <select name="month" id="month-input" required>
+      <option value="">Month</option>
       <option value="January">January</option>
       <option value="February">February</option>
       <option value="March">March</option>
@@ -63,16 +69,67 @@
       <option value="November">November</option>
       <option value="December">December</option>
     </select>
-    <label for="day-input">Day</label>
-    <input type="number" name="day" id="day-input" min="1" max="31" required>
-    <button>Daily Report</button>
+    <select name="day" id="day-input">
+      <option value="">Day</option>
+      <option value="01">01</option>
+      <option value="02">02</option>
+      <option value="03">03</option>
+      <option value="04">04</option>
+      <option value="05">05</option>
+      <option value="06">06</option>
+      <option value="07">07</option>
+      <option value="08">08</option>
+      <option value="09">09</option>
+      <option value="10">10</option>
+      <option value="11">11</option>
+      <option value="12">12</option>
+      <option value="13">13</option>
+      <option value="14">14</option>
+      <option value="15">15</option>
+      <option value="16">16</option>
+      <option value="17">17</option>
+      <option value="18">18</option>
+      <option value="19">19</option>
+      <option value="20">20</option>
+      <option value="21">21</option>
+      <option value="22">22</option>
+      <option value="23">23</option>
+      <option value="24">24</option>
+      <option value="25">25</option>
+      <option value="26">26</option>
+      <option value="27">27</option>
+      <option value="28">28</option>
+      <option value="29">29</option>
+      <option value="30">30</option>
+      <option value="31">31</option>
+    </select>
+    <button>View</button>
   </form>
+  </div>
+</div>
+  <div class="log-management">
+  <h2 class="title-text">MONTHLY REPORT</h2>
+  <hr>
 
+  <div class="report-view">
     <form action="/profile/monthly">
-    <label for="year-input">Year</label>
-    <input type="number" name="year" id="year-input" min="20" required>
-    <label for="month-input">Month</label>
-    <select name="month" id="month-input">
+        <select name="year" id="year-input" required>
+      <option value="">Year</option>
+      <option value="20">2020</option>
+      <option value="21">2021</option>
+      <option value="22">2022</option>
+      <option value="23">2023</option>
+      <option value="24">2024</option>
+      <option value="25">2025</option>
+      <option value="26">2026</option>
+      <option value="27">2027</option>
+      <option value="28">2028</option>
+      <option value="29">2029</option>
+      <option value="30">2030</option>
+      <option value="31">2031</option>
+    </select>
+    <select name="month" id="month-input" required>
+      <option value="">Month</option>
       <option value="January">January</option>
       <option value="February">February</option>
       <option value="March">March</option>
@@ -86,10 +143,9 @@
       <option value="November">November</option>
       <option value="December">December</option>
     </select>
-    <button>Monthly Report</button>
+    <button>View</button>
   </form>
   </div>
 
-  <a href="/{{ user._id}}/folder">Manage Logs</a>
   
 </div>

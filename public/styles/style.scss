@@ -295,7 +295,10 @@ footer {
   background-color: white;
   border-radius: 15px;
   margin-top: 2em;
-
+  img {
+    border-radius: 50%;
+    width: 10em;
+  }
   * {
     margin: 0 1em;
   }
@@ -308,25 +311,31 @@ footer {
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    text-align: center;
-    margin: 0 auto;
+    text-align: left;
     @media (min-width: 670px) {
       flex-direction: row;
     }
     * {
       margin: 0.5em;
-      font-size: 0.8em;
+      font-size: 1em;
       @media (min-width: 370px) {
         font-size: 1em;
       }
     }
-    h4 {
+    h2 {
       font-weight: bold;
+      font-size: 1.7em;
     }
   }
   .lookup-container {
     align-self: center;
   }
+}
+
+button,
+input,
+select {
+  border: 1px solid grey;
 }
 
 .log-management {
@@ -353,47 +362,59 @@ footer {
   }
 
   .report-view {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
     form {
-      border-radius: 15px;
-      border: 1px solid black;
-      margin: 1em;
-      padding: 1em;
       display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      flex-direction: row;
+      justify-content: center;
       align-items: center;
-      * {
-        margin: 0.2em;
-      }
-      label {
-        font-weight: bold;
-      }
-      button {
-        display: block;
-        align-self: stretch;
-        text-align: center;
-        background-color: $buttonblue;
-        border-radius: 35px;
-        border: none;
-        margin: 1em 1em 1em;
-        padding: 0 1em;
+      flex-wrap: wrap;
+      border-top: 1px solid white;
+      padding-top: 0.5em;
+      color: white;
+    }
+    padding: 0.5em;
+    input,
+    select {
+      border-radius: 35px;
+      margin: 0.5em 2em;
+      text-align: center;
+      text-align-last: center;
+      font-size: 1em;
+      width: 80%;
+      @media (min-width: 380px) {
         font-size: 1.5em;
-        color: white;
+        width: 18%;
+      }
+      height: 2em;
+    }
+    button {
+      text-align: center;
+      background-color: $buttonblue;
+      border-radius: 35px;
+      border: none;
+      width: 80%;
+      margin: 0.5em 1em 1em;
+      font-size: 1.5em;
+      color: white;
+      @media (min-width: 380px) {
+        font-size: 2em;
+        width: 18%;
       }
     }
   }
 }
 
 .log-view {
+  display: flex;
+  padding: 0 15px;
+  justify-content: space-between;
+  align-items: center;
   margin: 2em auto;
   border-bottom: 1px solid white;
   text-align: center;
   color: white;
   h1 {
+    margin: 0 auto;
     font-size: 2.5em;
     @media (min-width: 380px) {
       font-size: 3em;
@@ -600,12 +621,11 @@ footer {
   p {
     font-size: 12px;
   }
-  
+
   h4,
   p {
     text-align: center;
   }
-
 }
 
 .add-form {
@@ -730,12 +750,12 @@ footer {
     margin-top: 5px;
     margin-bottom: 0;
   }
-  
+
   h5,
   p {
     text-align: center;
   }
-  
+
   .deleteFood {
     button {
       width: 2rem;
@@ -748,8 +768,6 @@ footer {
     }
   }
 }
-
-
 
 .searched-item {
   display: flex;
@@ -823,5 +841,3 @@ button:focus {
 .fat-text {
   color: darkslateblue;
 }
-
-

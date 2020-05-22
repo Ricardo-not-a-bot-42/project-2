@@ -1,4 +1,7 @@
 <div class="log-view">
+    <a href="/">
+        <p><i class="fas fa-angle-left fa-2x icon"></i></p>
+    </a>
   <h1>Quick Lookup</h1>
 </div>
 {{#each foodData}}
@@ -7,7 +10,7 @@
 <div class="searched-item card">
             <div class="searched-item-info">
                 <div class="searched-item-title">
-                    <p>{{ food.label }}</a></p>
+                    <p>{{ food.label }}</p>
                 </div>
                 <div class="food-item-body"> 
                     <div>
@@ -46,3 +49,5 @@
 <input type="hidden" name="name" value="{{searchTerm}}">
   <button>Previous Page</button>
 </form>
+
+<script src="https://kit.fontawesome.com/49cb587e31.js" crossorigin="anonymous"></script>
