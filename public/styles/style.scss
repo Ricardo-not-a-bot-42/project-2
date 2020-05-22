@@ -607,7 +607,7 @@ select {
   height: 130px;
   margin: 10px 0;
   padding: 15px;
-  border-radius: 20px;
+
   h3,
   h2,
   p {
@@ -714,7 +714,7 @@ select {
   display: flex;
   flex-direction: row;
   input {
-    border: thin solid grey;
+    border: thin solid mediumturquoise;
     border-radius: 45px;
     margin: 0 5px;
     width: 100%;
@@ -722,9 +722,9 @@ select {
   }
 
   button {
-    border: none;
-    background-color: $bgblue;
-    color: white;
+    border: 1px solid mediumturquoise;
+
+    color: mediumturquoise;
     border-radius: 45px;
     margin: 0 5px;
   }
@@ -769,6 +769,7 @@ select {
   h5 {
     margin-top: 5px;
     margin-bottom: 0;
+    font-size: 18px;
   }
 
   h5,
@@ -792,15 +793,14 @@ select {
 .searched-item {
   display: flex;
   flex-direction: row;
-  justify-content: center;
   input {
-    height: 40px;
+    height: 36px;
     width: 70px;
     padding-left: 5px;
   }
   button {
-    height: 40px;
-    width: 40px;
+    height: 36px;
+    width: 36px;
     border-radius: 50%;
     background-color: cadetblue;
     border: 0;
@@ -813,16 +813,17 @@ select {
 }
 
 .searched-item-img {
-  width: 180px;
+  width: 150px;
   img {
+    margin-top: 10px;
     border-radius: 50%;
-    width: 100px;
-    max-width: 100px;
+    width: 85px;
+    max-width: 85px;
   }
 }
 
 .searched-item-info {
-  width: 300px;
+  width: 270px;
   display: flex;
   flex-direction: column;
   //justify-content: space-between;
@@ -832,13 +833,16 @@ select {
     p {
       color: $mainTextcolor;
       text-align: start;
-      line-height: 1.2rem;
+      line-height: 1rem;
     }
   }
 
   .searched-item-body {
     height: 40px;
-    padding-left: 85px;
+    //padding-left: 60px;
+    form {
+      float: right;
+    }
   }
 }
 
