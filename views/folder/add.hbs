@@ -2,11 +2,15 @@
 <section class="container">
     {{#each foodData}}
     {{#if food}}
-    {{#if food.image}}
+   
     <div class="card">
         <div class="searched-item">
             <div class="searched-item-img">
-                <img src="{{ food.image }}" alt="">
+                {{#if food.image}}
+                    <img src="{{ food.image }}" alt="">
+                {{else}}
+                    <img src="https://www.edamam.com/food-img/a4a/a4a52a6d8cc904ded6f78142886a924c.png" alt="">
+                {{/if}}
             </div>
             <div class="searched-item-info">
                 <div class="searched-item-title">
@@ -38,7 +42,7 @@
             
         </div>
     </div>
-    {{/if}}
+    
     {{/if}}
     {{/each}}
 </section>
