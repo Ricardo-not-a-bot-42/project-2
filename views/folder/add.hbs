@@ -2,6 +2,7 @@
 <section class="container">
     {{#each foodData}}
     {{#if food}}
+    {{#if food.image}}
     <div class="card">
         <div class="searched-item">
             <div class="searched-item-img">
@@ -37,6 +38,7 @@
             
         </div>
     </div>
+    {{/if}}
     {{/if}}
     {{/each}}
 </section>
