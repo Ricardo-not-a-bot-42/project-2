@@ -123,7 +123,7 @@ router.get("/:userId/folder/:monthId/:logname", routeGuard, (req, res, next) => 
     });
 });
 
-router.get("/:userId/folder/:monthId/:logname/add", (req, res, next) => {
+router.get("/:userId/folder/:monthId/:logname/add",routeGuard, (req, res, next) => {
   const { monthId, logname } = req.params;
   const searchTerm = req.query.name;
   const direction = req.query.direction;
