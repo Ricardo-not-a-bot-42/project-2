@@ -2,8 +2,9 @@ const { Router } = require("express");
 const router = Router();
 const Log = require("./../models/log");
 const axios = require("axios");
+const routeGuard = require("./../middleware/route-guard");
 
-router.get("/:userId/folder", (req, res, next) => {
+router.get("/:userId/folder", routeGuard, (req, res, next) => {
   const userId = req.params.userId;
   Log.find({ userId })
     .then((months) => {
@@ -14,7 +15,7 @@ router.get("/:userId/folder", (req, res, next) => {
     });
 });
 
-router.post("/:userId/folder/create", (req, res, next) => {
+router.post("/:userId/folder/create", routeGuard, (req, res, next) => {
   const { month, year } = req.body;
   const userId = req.user._id;
   Log.findOne({ name: month, year, userId })
@@ -37,7 +38,7 @@ router.post("/:userId/folder/create", (req, res, next) => {
     });
 });
 
-router.get("/:userId/folder/:monthId", (req, res, next) => {
+router.get("/:userId/folder/:monthId", routeGuard, (req, res, next) => {
   const { userId, monthId } = req.params;
   Log.findOne({ userId, _id: monthId })
     .then((month) => {
@@ -49,7 +50,7 @@ router.get("/:userId/folder/:monthId", (req, res, next) => {
     });
 });
 
-router.post("/:userId/folder/:monthId/delete", (req, res, next) => {
+router.post("/:userId/folder/:monthId/delete", routeGuard, (req, res, next) => {
   const { userId, monthId } = req.params;
   Log.findOneAndRemove({ userId, _id: monthId })
     .then((month) => {
@@ -60,7 +61,7 @@ router.post("/:userId/folder/:monthId/delete", (req, res, next) => {
     });
 });
 
-router.post("/:userId/folder/:monthId/createlog", (req, res, next) => {
+router.post("/:userId/folder/:monthId/createlog", routeGuard, (req, res, next) => {
   const { userId, monthId } = req.params;
   const day = req.body.day;
   Log.findOne({ userId, _id: monthId })
@@ -87,7 +88,7 @@ router.post("/:userId/folder/:monthId/createlog", (req, res, next) => {
     });
 });
 
-router.post("/:userId/folder/:monthId/:logname/delete", (req, res, next) => {
+router.post("/:userId/folder/:monthId/:logname/delete", routeGuard, (req, res, next) => {
   const { userId, monthId, logname } = req.params;
   Log.findOne({ userId, _id: monthId })
     .then((doc) => {
@@ -106,7 +107,7 @@ router.post("/:userId/folder/:monthId/:logname/delete", (req, res, next) => {
     });
 });
 
-router.get("/:userId/folder/:monthId/:logname", (req, res, next) => {
+router.get("/:userId/folder/:monthId/:logname", routeGuard, (req, res, next) => {
   const { userId, monthId, logname } = req.params;
   Log.findOne({ userId, _id: monthId })
     .then((month) => {
@@ -114,6 +115,7 @@ router.get("/:userId/folder/:monthId/:logname", (req, res, next) => {
         return d.name === logname;
       });
       console.log(dayLog.foods);
+
       res.render("folder/log", { dayLog, monthId, userId, month });
     })
     .catch((err) => {
@@ -137,7 +139,7 @@ router.get("/:userId/folder/:monthId/:logname/add", (req, res, next) => {
     .then((results) => {
       console.log(results.data.hints);
       const foodData = results.data.hints;
-      res.render("folder/add", { foodData, nextPage, monthId, logname });
+      res.render("folder/add", { searchTerm, foodData, nextPage, monthId, logname });
     })
     .catch((error) => {
       next(error);
@@ -146,7 +148,7 @@ router.get("/:userId/folder/:monthId/:logname/add", (req, res, next) => {
   //
 });
 
-router.post("/:userId/folder/:monthId/:logname/add*", (req, res, next) => {
+router.post("/:userId/folder/:monthId/:logname/add*", routeGuard, (req, res, next) => {
   console.log("entrou");
   const { amount, Kcal, prot, carb, fat, name, category, pictureUrl } = req.body;
   const { userId, monthId, logname } = req.params;
@@ -189,7 +191,7 @@ router.post("/:userId/folder/:monthId/:logname/add*", (req, res, next) => {
     });
 });
 
-router.post("/:userId/folder/:monthId/:logname/:foodId/delete", (req, res, next) => {
+router.post("/:userId/folder/:monthId/:logname/:foodId/delete", routeGuard, (req, res, next) => {
   const { userId, monthId, logname, foodId } = req.params;
   Log.findOne({ userId, _id: monthId })
     .then((doc) => {
@@ -215,3 +217,4 @@ router.post("/:userId/folder/:monthId/:logname/:foodId/delete", (req, res, next)
 });
 
 module.exports = router;
+
