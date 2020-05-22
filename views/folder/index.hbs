@@ -94,7 +94,7 @@
         if(days == "0" || totalKcal == "0"){
             tag.innerText = "---";
         }else{
-            tag.innerText = totalKcal/days;
+            tag.innerText = Math.round(totalKcal/days);
         }
         
     }
