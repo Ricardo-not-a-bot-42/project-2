@@ -229,6 +229,24 @@ footer {
       .sign-up button,
       .sign-in button {
         font-size: 2em; } }
+  .sign-up .sign-up-picture,
+  .sign-in .sign-up-picture {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 35px;
+    width: 80%; }
+    .sign-up .sign-up-picture label,
+    .sign-in .sign-up-picture label {
+      width: 50%;
+      margin: 0 auto; }
+    .sign-up .sign-up-picture input,
+    .sign-in .sign-up-picture input {
+      margin: 0 auto;
+      border: none;
+      width: 40%; }
 
 .profile-info,
 .lookup {
@@ -495,7 +513,8 @@ select {
   width: 100%;
   height: 130px;
   margin: 10px 0;
-  padding: 15px; }
+  padding: 15px;
+  border-radius: 20px; }
   .card h3,
   .card h2,
   .card p {
@@ -578,14 +597,15 @@ select {
   display: flex;
   flex-direction: row; }
   .search-form input {
-    border: thin solid mediumturquoise;
+    border: thin solid grey;
     border-radius: 45px;
     margin: 0 5px;
     width: 100%;
     padding-left: 20px; }
   .search-form button {
-    border: 1px solid mediumturquoise;
-    color: mediumturquoise;
+    border: none;
+    background-color: rgba(89, 151, 65, 0.5);
+    color: white;
     border-radius: 45px;
     margin: 0 5px; }
 
@@ -635,7 +655,8 @@ select {
 
 .searched-item {
   display: flex;
-  flex-direction: row; }
+  flex-direction: row;
+  justify-content: center; }
   .searched-item input {
     height: 40px;
     width: 70px;

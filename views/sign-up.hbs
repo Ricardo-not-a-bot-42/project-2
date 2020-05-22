@@ -6,7 +6,10 @@
 </div>
 
 <form action="/authentication/sign-up" method="POST" enctype="multipart/form-data" class="sign-up">
-  <input type="file" id="input-picture" name="picture" placeholder="Profile Picture" required/>
+  <div class="sign-up-picture">
+    <label for="input-picture" >Profile Picture</label>
+    <input type="file" id="input-picture" name="picture" required/>
+  </div>
   <input type="email" id="input-email" name="email" placeholder="Your Email" required/>
   <input type="text" id="input-name" name="name" placeholder="Your Name" required/>
   <input type="number" id="input-age" name="age" min="1" placeholder="Your age" required/>

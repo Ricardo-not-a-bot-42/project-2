@@ -4,30 +4,45 @@
     </a>
   <h1>Quick Lookup</h1>
 </div>
+
+<section class="search">
+    
+        <form class="search-form" action="search" method="GET">
+            <input type="text" name="name" placeholder="   food" id="">
+            <input type="hidden" name="direction" value="1">
+            <input type="hidden" name="session" value="-1">
+            <button>Search</button>
+        </form>
+     
+</section>
+
 {{#each foodData}}
 {{#if food}}
 <a href="/food/{{ food.foodId }}">
 <div class="searched-item card">
+                <div class="searched-item-img">
+                <img src="{{food.image}}" alt="">
+            </div>
             <div class="searched-item-info">
                 <div class="searched-item-title">
                     <p>{{ food.label }}</p>
                 </div>
                 <div class="food-item-body"> 
-                    <div>
+                    <div class="kcal-text">
                         <p>Calories</p>
-                        <h5><strong>{{food.nutrients.ENERC_KCAL}}cal</strong></h5>
+                        <h5><strong>{{food.nutrients.ENERC_KCAL}}</strong></h5>
                     </div>
-                    <div>
+                    <div class="carb-text">
                         <p>Carbs</p>
-                        <h5><strong>{{food.nutrients.CHOCDF}}g</strong></h5>
+                        <h5><strong>{{food.nutrients.CHOCDF}}</strong></h5>
                     </div>
-                    <div>
+                    <div class="protein-text">
                         <p>Protein</p>
-                        <h5><strong>{{food.nutrients.PROCNT}}g</strong></h5>
+                        <h5><strong>{{food.nutrients.PROCNT}}</strong></h5>
                     </div>
-                    <div>
+                    <div class="fat-text">
                         <p>Fat</p>
-                        <h5><strong>{{food.nutrients.FAT}}g</strong></h5>
+                        <h5><strong>{{food.nutrients.FAT}}</strong></h5>
                     </div>
                 </div>
             </div>         
@@ -36,6 +51,7 @@
 {{/if}}
 {{/each}}
 
+<section class="next-previous-btn">
 <form action="/search">
 <input type="hidden" name="session" value="{{ nextPage }}">
 <input type="hidden" name="direction" value="1">
@@ -49,5 +65,6 @@
 <input type="hidden" name="name" value="{{searchTerm}}">
   <button>Previous Page</button>
 </form>
+</section>
 
 <script src="https://kit.fontawesome.com/49cb587e31.js" crossorigin="anonymous"></script>

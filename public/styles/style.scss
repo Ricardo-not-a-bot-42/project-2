@@ -283,6 +283,26 @@ footer {
       font-size: 2em;
     }
   }
+
+  .sign-up-picture {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 35px;
+
+    width: 80%;
+    label {
+      width: 50%;
+      margin: 0 auto;
+    }
+    input {
+      margin: 0 auto;
+      border: none;
+      width: 40%;
+    }
+  }
 }
 
 .profile-info,
@@ -587,7 +607,7 @@ select {
   height: 130px;
   margin: 10px 0;
   padding: 15px;
-
+  border-radius: 20px;
   h3,
   h2,
   p {
@@ -694,7 +714,7 @@ select {
   display: flex;
   flex-direction: row;
   input {
-    border: thin solid mediumturquoise;
+    border: thin solid grey;
     border-radius: 45px;
     margin: 0 5px;
     width: 100%;
@@ -702,9 +722,9 @@ select {
   }
 
   button {
-    border: 1px solid mediumturquoise;
-
-    color: mediumturquoise;
+    border: none;
+    background-color: $bgblue;
+    color: white;
     border-radius: 45px;
     margin: 0 5px;
   }
@@ -772,6 +792,7 @@ select {
 .searched-item {
   display: flex;
   flex-direction: row;
+  justify-content: center;
   input {
     height: 40px;
     width: 70px;

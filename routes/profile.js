@@ -5,6 +5,24 @@ const router = new Router();
 const axios = require('axios');
 const Log = require('./../models/log');
 const User = require('./../models/user');
+
+const multer = require('multer');
+const cloudinary = require('cloudinary');
+const cloudinaryStorage = require('multer-storage-cloudinary');
+
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
+const storage = cloudinaryStorage({
+  cloudinary,
+  folder: 'ih-project-2',
+});
+
+const uploader = multer({ storage });
+
 const routeGuard = require('./../middleware/route-guard');
 
 router.get('/', routeGuard, (req, res, next) => {
@@ -103,22 +121,28 @@ router.get('/edit', routeGuard, (req, res, next) => {
   res.render('profile/edit-profile');
 });
 
-router.post('/edit', routeGuard, (req, res, next) => {
-  const userId = res.locals.user._id;
-  const updatedDetails = {
-    name: req.body.name,
-    email: req.body.email,
-    age: req.body.age,
-    gender: req.body.gender,
-  };
-  User.findByIdAndUpdate(userId, updatedDetails).then(() => {
-    res.redirect('/profile');
-  });
-});
+router.post(
+  '/edit',
+  uploader.single('picture'),
+  routeGuard,
+  (req, res, next) => {
+    const userId = res.locals.user._id;
+    const picture = req.file.url;
+    const updatedDetails = {
+      name: req.body.name,
+      email: req.body.email,
+      age: req.body.age,
+      gender: req.body.gender,
+      profilePic: picture,
+    };
+    User.findByIdAndUpdate(userId, updatedDetails).then(() => {
+      res.redirect('/profile');
+    });
+  }
+);
 
 router.post('/delete', routeGuard, (req, res, next) => {
   const userId = res.locals.user._id;
-  console.log('asdas');
   Log.deleteMany({ userId })
     .then((error, result) => {
       return User.findByIdAndDelete(userId);
