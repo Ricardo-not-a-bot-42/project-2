@@ -435,7 +435,8 @@ select {
     padding: 1em;
     color: white; }
 
-.edit-profile-button {
+.edit-profile-button,
+.report-button {
   display: block;
   align-self: stretch;
   text-align: center;
@@ -445,8 +446,14 @@ select {
   font-size: 1.5em;
   color: white; }
   @media (min-width: 370px) {
-    .edit-profile-button {
+    .edit-profile-button,
+    .report-button {
       font-size: 2em; } }
+
+.report-button button {
+  background: none;
+  border: none;
+  color: white; }
 
 #delete-account {
   text-align: center; }
@@ -554,15 +561,36 @@ select {
     width: 60px; }
   .add-form input {
     width: 80px; }
+  .add-form .month-inputs,
+  .add-form .day-input {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center; }
   .add-form select {
-    width: 80px; }
+    border-radius: 35px;
+    margin: 0.5em 2em;
+    text-align: center;
+    text-align-last: center;
+    font-size: 1em;
+    padding: 0 1em;
+    height: 2em; }
+    @media (min-width: 380px) {
+      .add-form select {
+        font-size: 1.5em; } }
   .add-form button {
-    margin: 0 10px;
-    border: 2px solid white;
-    color: white;
-    background-color: rgba(0, 0, 0, 0);
-    width: 75px;
-    height: 75px; }
+    text-align: center;
+    background-color: #5fa474;
+    border-radius: 35px;
+    border: none;
+    width: 80%;
+    margin: 0.5em 1em 1em;
+    font-size: 1.5em;
+    color: white; }
+    @media (min-width: 380px) {
+      .add-form button {
+        font-size: 2em;
+        width: 18%; } }
 
 .form-container {
   padding: 20px; }
@@ -691,6 +719,8 @@ select {
   .searched-item-info .searched-item-body {
     height: 40px;
     padding-left: 85px; }
+    .searched-item-info .searched-item-body input {
+      border-radius: 35px; }
 
 input:focus,
 button:focus {
@@ -714,8 +744,11 @@ button:focus {
   justify-content: space-between;
   margin: 10px 15px; }
   .next-previous-btn button {
-    background-color: white;
+    background-color: #5fa474;
+    color: white;
     border-radius: 15px;
+    font-size: 1.5em;
+    margin: 0 0.5em;
     border: 0; }
 
 /*# sourceMappingURL=style.css.map */

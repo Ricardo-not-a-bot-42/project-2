@@ -58,7 +58,16 @@
         </div>
     
     {{/each}}
-    
+
+    <div class="report-button">
+    <form action="/profile/daily">
+        <input type="hidden" name="day" id="dau-input" value="{{dayLog.name}}">
+        <input type="hidden" name="year" id="year-input" value="{{month.year}}">
+        <input type="hidden" name="month" id="month-input" value="{{month.name}}">
+    <button>View Report</button>
+  </form>
+    </div>
+
 </section>
 
 <script src="https://kit.fontawesome.com/49cb587e31.js" crossorigin="anonymous"></script>

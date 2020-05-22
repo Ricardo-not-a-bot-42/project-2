@@ -57,9 +57,10 @@
     
     <div class="add-box">
         <form class="add-form" action="/{{user._id}}/folder/{{month._id}}/createlog" method="POST">
-            <div>
-                <label for="day-input">Day</label>
-                <select name="day" id="day">
+            <div class="day-input">
+                {{!-- <label for="day-input">Day</label> --}}
+                <select name="day" id="day" required>
+                    <option value="">Day</option>
                     <option value="01">01</option>
                     <option value="02">02</option>
                     <option value="03">03</option>
@@ -98,6 +99,14 @@
             <button class="square-btn">ADD</button>
             
         </form>
+    </div>
+
+    <div>
+    <form action="/profile/monthly" class="report-button">
+        <input type="hidden" name="year" id="year-input" value="{{month.year}}">
+        <input type="hidden" name="month" id="month-input" value="{{month.name}}">
+    <button>View Report</button>
+  </form>
     </div>
 
 </section>

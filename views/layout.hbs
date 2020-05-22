@@ -9,13 +9,14 @@
   </head>
   <body>
     <nav>
-      <a href="/" class="nav-title">Profile</a>
       {{#if user}}
+        <a href="/" class="nav-title">Profile</a>
           <a href="/{{ user._id}}/folder"class="nav-logout">Logs</a>
           <form action="/authentication/sign-out" method="POST">
             <button class="nav-logout">Logout</button>
           </form>
         {{else}}
+        <a href="/" class="nav-title">Home</a>
         <a href="/authentication/sign-in" class="nav-login">Login</a>
       {{/if}}
     </nav>

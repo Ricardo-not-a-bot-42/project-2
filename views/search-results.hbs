@@ -25,7 +25,7 @@
             </div>
             <div class="searched-item-info">
                 <div class="searched-item-title">
-                    <p>{{ food.label }}</p>
+                    <p class="label">{{ food.label }}</p>
                 </div>
                 <div class="food-item-body"> 
                     <div class="kcal-text">
@@ -54,17 +54,41 @@
 <section class="next-previous-btn">
 <form action="/search">
 <input type="hidden" name="session" value="{{ nextPage }}">
+<input type="hidden" name="direction" value="-1">
+<input type="hidden" name="name" value="{{searchTerm}}">
+  <button>Previous Page</button>
+</form>
+
+<form action="/search">
+<input type="hidden" name="session" value="{{ nextPage }}">
 <input type="hidden" name="direction" value="1">
 <input type="hidden" name="name" value="{{searchTerm}}">
   <button>Next Page</button>
 </form>
 
-<form action="/search">
-<input type="hidden" name="session" value="{{ nextPage }}">
-<input type="hidden" name="direction" value="-1">
-<input type="hidden" name="name" value="{{searchTerm}}">
-  <button>Previous Page</button>
-</form>
 </section>
+
+<script>
+    $labels = document.getElementsByClassName('label');
+
+    for(let label of $labels){
+        const arr = label.innerText.toLowerCase().split(" ");
+        let newText = "";
+
+        if(arr.length > 6){
+            const slicedArr = arr.slice(0,6);
+            newText = slicedArr.join(" ");
+        }else{
+            newText = arr.join(" ");
+        }
+        const capitalizedText = newText.charAt(0).toUpperCase() + newText.slice(1)
+        
+        
+        console.log(capitalizedText, arr);
+
+        label.innerText = capitalizedText;
+    }
+
+</script>
 
 <script src="https://kit.fontawesome.com/49cb587e31.js" crossorigin="anonymous"></script>

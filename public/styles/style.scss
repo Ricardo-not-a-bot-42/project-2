@@ -512,7 +512,8 @@ select {
   }
 }
 
-.edit-profile-button {
+.edit-profile-button,
+.report-button {
   display: block;
   align-self: stretch;
   text-align: center;
@@ -524,6 +525,12 @@ select {
   @media (min-width: 370px) {
     font-size: 2em;
   }
+}
+
+.report-button button {
+  background: none;
+  border: none;
+  color: white;
 }
 
 #delete-account {
@@ -660,17 +667,40 @@ select {
     width: 80px;
   }
 
+  .month-inputs,
+  .day-input {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
   select {
-    width: 80px;
+    border-radius: 35px;
+    margin: 0.5em 2em;
+    text-align: center;
+    text-align-last: center;
+    font-size: 1em;
+    padding: 0 1em;
+    @media (min-width: 380px) {
+      font-size: 1.5em;
+    }
+    height: 2em;
   }
 
   button {
-    margin: 0 10px;
-    border: 2px solid white;
+    text-align: center;
+    background-color: $buttonblue;
+    border-radius: 35px;
+    border: none;
+    width: 80%;
+    margin: 0.5em 1em 1em;
+    font-size: 1.5em;
     color: white;
-    background-color: rgba(0, 0, 0, 0);
-    width: 75px;
-    height: 75px;
+    @media (min-width: 380px) {
+      font-size: 2em;
+      width: 18%;
+    }
   }
 }
 
@@ -837,6 +867,9 @@ select {
   }
 
   .searched-item-body {
+    input {
+      border-radius: 35px;
+    }
     height: 40px;
     padding-left: 85px;
   }
@@ -870,8 +903,11 @@ button:focus {
   margin: 10px 15px;
 
   button {
-    background-color: white;
+    background-color: $buttonblue;
+    color: white;
     border-radius: 15px;
+    font-size: 1.5em;
+    margin: 0 0.5em;
     border: 0;
   }
 }

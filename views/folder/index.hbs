@@ -31,7 +31,7 @@
         <form class="add-form" action="/{{user._id}}/folder/create" method="POST">
             <div class="month-inputs">
                 <div>
-                    <label for="month-input">Month</label>
+                    {{!-- <label for="month-input">Month</label> --}}
                     <select name="month" id="month">
                         <option value="January" selected>January</option>
                         <option value="February">February</option>
@@ -48,7 +48,7 @@
                     </select>
                 </div>
                 <div>
-                    <label for="year-input">Year</label>
+                    {{!-- <label for="year-input">Year</label> --}}
                     <select name="year" id="year">
                         <option value="20" selected>2020</option>
                         <option value="21">2021</option>
