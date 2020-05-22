@@ -517,11 +517,11 @@ select {
 
 .card {
   display: flex;
+  border-radius: 20px;
   width: 100%;
   height: 130px;
   margin: 10px 0;
-  padding: 15px;
-  border-radius: 20px; }
+  padding: 15px; }
   .card h3,
   .card h2,
   .card p {
@@ -632,7 +632,7 @@ select {
     padding-left: 20px; }
   .search-form button {
     border: none;
-    background-color: rgba(89, 151, 65, 0.5);
+    background-color: #5fa474;
     color: white;
     border-radius: 45px;
     margin: 0 5px; }
@@ -668,7 +668,8 @@ select {
   height: 40px; }
   .food-item-body h5 {
     margin-top: 5px;
-    margin-bottom: 0; }
+    margin-bottom: 0;
+    font-size: 18px; }
   .food-item-body h5,
   .food-item-body p {
     text-align: center; }
@@ -686,12 +687,12 @@ select {
   flex-direction: row;
   justify-content: center; }
   .searched-item input {
-    height: 40px;
+    height: 36px;
     width: 70px;
     padding-left: 5px; }
   .searched-item button {
-    height: 40px;
-    width: 40px;
+    height: 36px;
+    width: 36px;
     border-radius: 50%;
     background-color: cadetblue;
     border: 0;
@@ -700,14 +701,15 @@ select {
     display: inline; }
 
 .searched-item-img {
-  width: 180px; }
+  width: 150px; }
   .searched-item-img img {
+    margin-top: 10px;
     border-radius: 50%;
-    width: 100px;
-    max-width: 100px; }
+    width: 85px;
+    max-width: 85px; }
 
 .searched-item-info {
-  width: 300px;
+  width: 270px;
   display: flex;
   flex-direction: column; }
   .searched-item-info .searched-item-title {
@@ -715,12 +717,13 @@ select {
     .searched-item-info .searched-item-title p {
       color: slategray;
       text-align: start;
-      line-height: 1.2rem; }
+      line-height: 1rem; }
   .searched-item-info .searched-item-body {
-    height: 40px;
-    padding-left: 85px; }
+    height: 40px; }
     .searched-item-info .searched-item-body input {
       border-radius: 35px; }
+    .searched-item-info .searched-item-body form {
+      float: right; }
 
 input:focus,
 button:focus {
