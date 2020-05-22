@@ -127,7 +127,10 @@ router.post(
   routeGuard,
   (req, res, next) => {
     const userId = res.locals.user._id;
-    const picture = req.file.url;
+    let picture = res.locals.user.profilePic;
+    if (req.file) {
+      picture = req.file.url;
+    }
     const updatedDetails = {
       name: req.body.name,
       email: req.body.email,

@@ -8,23 +8,40 @@
 <form action="" method="POST" enctype="multipart/form-data" class="sign-up">
     <div class="sign-up-picture">
     <label for="input-picture" >Profile Picture</label>
-    <input type="file" id="input-picture" name="picture" required/>
+    <input type="file" id="input-picture" name="picture"/>
   </div>
   <input type="email" id="input-email" name="email" placeholder="Your Email" value="{{ user.email }}" required/>
   <input type="text" id="input-name" name="name" placeholder="Your Name" value="{{ user.name }}" required/>
   <input type="number" id="input-name" name="age" min="1" placeholder="Your Name" value="{{ user.age }}" required/>
-  <select name="gender" id="input-gender" required>
+  <select name="gender" id="input-gender"  onchange="informationToggle()" required>
     <option value="">Gender</option>
     <option value="male">Male</option>
     <option value="female">Female</option>
     <option value="other">Other</option>
   </select>
+    <div class="gender-info" id="gender-info" style="display: none;">
+  <h2 class="title-text">INFORMATION</h2>
+  <hr>
+  <h4>In order to obtain calorie recommendations we use certain data such as age and gender to determine the specific values, as such we are unable to guarantee accurate data for non-binary genders.</h4>
+  </div>
   <button>Update Account</button>
 </form>
 
   <form id="delete-account" action="/profile/delete" method="POST">
     <button type="button" onclick="deleteConfirm()">Delete account</button>
   </form>
+
+<script>
+  function informationToggle() {
+    $genderInput = document.getElementById('input-gender');
+    $infoDiv = document.getElementById('gender-info');
+    if($genderInput.value === 'other') {
+      $infoDiv.style = '';
+    } else {
+      $infoDiv.style = 'display:none'
+    }
+  }
+</script>
 
 <script src="https://kit.fontawesome.com/49cb587e31.js" crossorigin="anonymous"></script>
 

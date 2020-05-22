@@ -305,6 +305,22 @@ footer {
   }
 }
 
+.gender-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: 0 0.5em;
+  width: 80%;
+  background-color: white;
+  border-radius: 15px;
+  margin-top: 2em;
+  h4 {
+    padding: 1em;
+    font-size: 1.2em;
+  }
+}
+
 .profile-info,
 .lookup {
   display: flex;
@@ -907,8 +923,8 @@ button:focus {
   flex-direction: row;
   justify-content: space-between;
   margin: 10px 15px;
-
   button {
+    text-align: center;
     background-color: $buttonblue;
     color: white;
     border-radius: 15px;
