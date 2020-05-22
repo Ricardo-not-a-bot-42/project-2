@@ -321,6 +321,21 @@ footer {
   }
 }
 
+.error-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: 2em 0.5em;
+  padding: 0.5em;
+  background-color: white;
+  border-radius: 15px;
+  h4 {
+    padding: 1em;
+    font-size: 1.2em;
+  }
+}
+
 .profile-info,
 .lookup {
   display: flex;
