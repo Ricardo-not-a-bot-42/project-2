@@ -824,4 +824,17 @@ button:focus {
   color: darkslateblue;
 }
 
+.next-previous-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 10px 15px;
+
+  button {
+    background-color: white;
+    border-radius: 15px;
+    border: 0;
+  }
+}
+
 
