@@ -16,7 +16,8 @@ router.get("/:userId/folder", (req, res, next) => {
 
 router.post("/:userId/folder/create", (req, res, next) => {
   const { month, year } = req.body;
-  Log.findOne({ name: month, year })
+  const userId = req.user._id;
+  Log.findOne({ name: month, year, userId })
     .then((doc) => {
       if (doc) {
         return Promise.resolve();
@@ -40,6 +41,7 @@ router.get("/:userId/folder/:monthId", (req, res, next) => {
   const { userId, monthId } = req.params;
   Log.findOne({ userId, _id: monthId })
     .then((month) => {
+      month.day.sort((a, b) => b.name - a.name);
       res.render("folder/month", { month });
     })
     .catch((err) => {
